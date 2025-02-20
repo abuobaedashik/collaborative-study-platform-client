@@ -22,6 +22,10 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <Register></Register>,
       },
+      {
+        path: "/contact",
+        element: <div className="pt-20 mb-[800px]">Contact</div>,
+      },
     ]
   },
 ]);

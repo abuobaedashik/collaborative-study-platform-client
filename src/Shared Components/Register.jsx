@@ -15,7 +15,7 @@ const Register = () => {
     CreateUser(data.email,data.password)
     .then(result=>{
         const loggedUser = result.user
-        console.log(loggedUser)
+        console.log(loggedUser,"user create")
     })
 
 

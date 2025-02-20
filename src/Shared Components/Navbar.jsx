@@ -1,17 +1,64 @@
 import { NavLink } from "react-router-dom";
 import icon1 from "../../src/assets/image/iconbg1.png";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/Auth/Authprovider";
+import { toast, ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-   const {user} =useContext(AuthContext)
+   const {user,SignOut} =useContext(AuthContext)
+   const [isScrolled, setIsScrolled] = useState(false);
+
+   useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+
+   const handleSignOut =()=>{
+    SignOut()
+     .then(()=>{
+      // console.log('Logout successful');
+      Swal.fire({
+        title: "Logout Successful",
+        icon: "success"
+      });
+     })
+     .catch(error=>{
+      //  console.log(error.message);
+      toast.error(error.message, {
+        position: "top-center", 
+        autoClose: 3000, 
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored", 
+      });
+     })
+  }
   return (
     <div>
-      <div className="navbar max-w-[1920px]  fixed z-10  bg-green-600 bg-opacity-30 text-[#ffffff]">
+      <div
+
+       className={`navbar max-w-[1920px]  fixed z-10    transition-all duration-300 ${
+        isScrolled ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 " : "bg-[#E476E9]"
+      }`}>
         <div className="flex-1 pl-6 md:pl-16">
           <div className=" text-xl font-bold flex gap-3 items-center justify-between">
             <img src={icon1} alt="" className="w-[35px] h-[35px]" />
-            <p> Collaborative Study Platform</p>
+            <p className="text-2xl font-semibold"> Collaborative Study Platform</p>
+           
           </div>
         </div>
         <div className="flex-none pr-6 md:pr-16">
@@ -60,8 +107,8 @@ const Navbar = () => {
               {user ? (
                 <div className=" flex items-center justify-center gap-2">
                   {/* <span className="mr-6">{user?.displayName}</span> */}
-                     {/* onClick={handleSignOut} */}
-                  <button >SignOut</button>
+                   
+                  <button  onClick={handleSignOut}>SignOut</button>
                   <span className="mr-6">
                     {" "}
                     {user ? (
@@ -131,6 +178,7 @@ const Navbar = () => {
             </ul> */}
           </div>
         </div>
+        <ToastContainer></ToastContainer>
       </div>
     </div>
   );

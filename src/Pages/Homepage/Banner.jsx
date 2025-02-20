@@ -7,7 +7,8 @@ import icon3 from '../../../src/assets/image/iconbg3.png'
 const Banner = () => {
   return (
     <div className="relative">
-      <div className="flex items-center md:flex-row flex-col gap-4  justify-between py-48 bg-[#F5EDFE]  px-6 md:px-20">
+      {/* #F5EDFE */}
+      <div className="flex items-center md:flex-row flex-col gap-4  justify-between py-24 bg-[#E476E9]  px-6 md:px-20">
         <div className="text w-full md:w-[40%] ">
           <h1 className="text-[38px] leading-10 font-extrabold text-[#0A033C]">
             Your Ultimate Collaborative Learning Hub
