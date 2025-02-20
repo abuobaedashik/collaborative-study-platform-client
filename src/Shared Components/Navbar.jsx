@@ -1,6 +1,10 @@
+import { NavLink } from "react-router-dom";
 import icon1 from "../../src/assets/image/iconbg1.png";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/Auth/Authprovider";
 
 const Navbar = () => {
+   const {user} =useContext(AuthContext)
   return (
     <div>
       <div className="navbar max-w-[1920px]  fixed z-10  bg-green-600 bg-opacity-30 text-[#ffffff]">
@@ -11,7 +15,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex-none pr-6 md:pr-16">
-          <div className="dropdown dropdown-end">
+          {/* <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -49,21 +53,66 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
+          
+            <div className="flex items-center justify-between">
+              {user ? (
+                <div className=" flex items-center justify-center gap-2">
+                  {/* <span className="mr-6">{user?.displayName}</span> */}
+                     {/* onClick={handleSignOut} */}
+                  <button >SignOut</button>
+                  <span className="mr-6">
+                    {" "}
+                    {user ? (
+                      <>
+                        <img
+                          src={user?.photoURL}
+                          alt="profile"
+                          className="w-10 h-10 rounded-full"
+                        />{" "}
+                      </>
+                    ) : (
+                      <div className="w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                      />
+                    </div>
+                    )}{" "}
+                  </span>
+                </div>
+              ) : (
+                <div>
+                  <div className="flex items-center  gap-3 mr-5">
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                          : "md:flex gap-1 items-center hidden text-sm font-medium px-3"
+                      }
+                      to={"/signup"}
+                    >
+                      <button>Signup</button>
+                    </NavLink>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                          : "flex gap-1 items-center text-sm font-medium px-3"
+                      }
+                      to={"/login"}
+                    >
+                      <button>Login</button>
+                    </NavLink>
+
+                    {/* className="rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold" */}
+                  </div>
+                </div>
+              )}
             </div>
-            <ul
+
+            {/* <ul
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
@@ -79,7 +128,7 @@ const Navbar = () => {
               <li>
                 <a>Logout</a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </div>
