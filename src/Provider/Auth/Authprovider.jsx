@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // ✅ Context API Data
+  // Context API Data
   const authInfo = {
     user,
     CreateUser,
@@ -68,7 +68,7 @@ const AuthProvider = ({ children }) => {
     UpdateUser,
   };
 
-  // ✅ Firebase Authentication Observer
+  //  Firebase Authentication Observer
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);

@@ -1,22 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { AuthContext } from '../Provider/Auth/Authprovider';
-
+import { AuthContext } from "../Provider/Auth/Authprovider";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const { LogInUser, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
     console.log(data);
     LogInUser(data.email, data.password)
-      .then(result => {
+      .then((result) => {
         const login = result.user;
         console.log(login, "user login");
-        
+        Swal.fire({
+          title: "Login Successful!",
+          icon: "success",
+        });
+        navigate(from, { replace: true });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Login failed", error);
+        const Errormessage =error.message
+        toast.error(Errormessage , {
+          position: "top-center", 
+          autoClose: 3000, 
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored", 
+        })
       });
   };
 
@@ -54,20 +71,32 @@ const Login = () => {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="btn btn-success mt-6 flex items-center justify-center w-full">
+          <button
+            type="submit"
+            className="btn btn-success mt-6 flex items-center justify-center w-full"
+          >
             Login
           </button>
 
+          <p className="my-4 text-base text-white text-center">
+             Or Social Login
+          </p>
+
           {/* Google Sign In Button */}
-          <button 
-            onClick={googleSignIn} 
+          <button
+            onClick={googleSignIn}
             type="button"
             className="btn btn-primary mt-4 flex items-center justify-center w-full"
           >
             Sign in with Google
           </button>
+            
+          <p className="my-4 text-base text-white text-center">
+            If you have no account go to  <NavLink className="text-base font-semibold text-green-700" to={ "/signup"}>SignUp</NavLink>
+          </p>
         </form>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
