@@ -10,16 +10,20 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 // import app from "../Firebase/Firebase.config";
-// import useAxiosPublic from "../Hooks/useAxiosPublic";
+// import useAxiosPublic from "../Hooks/useAxiosPublic"; 
 
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
 // const axiosPublic = useAxiosPublic();
+const axiosPublic = useAxiosPublic()
+
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
+ 
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -53,7 +57,7 @@ const AuthProvider = ({ children }) => {
   const SignOut = () => {
     setLoader(true);
     return signOut(auth).then(() => {
-      localStorage.removeItem("access-token"); // ✅ Logout হলে Token Remove করা
+      localStorage.removeItem("access-token"); 
     });
   };
 
@@ -74,24 +78,24 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       console.log("User State Changed:", currentUser);
 
-    //   if (currentUser) {
-    //     try {
-    //       // Token Request
-    //       const userInfo = { email: currentUser.email };
-    //       const res = await axiosPublic.post("/jwt", userInfo);
+      if (currentUser) {
+        try {
+          // Token Request
+          const userInfo = { email: currentUser.email };
+          const res = await axiosPublic.post("/jwt", userInfo);
 
           
-    //       if (res.data.token) {
-    //         localStorage.setItem("access-token", res.data.token);
-    //       } else {
-    //         console.error("No Token Received from Backend");
-    //       }
-    //     } catch (error) {
-    //       console.error("Token Fetch Error:", error);
-    //     }
-    //   } else {
-    //     localStorage.removeItem("access-token"); 
-    //   }
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          } else {
+            console.error("No Token Received from Backend");
+          }
+        } catch (error) {
+          console.error("Token Fetch Error:", error);
+        }
+      } else {
+        localStorage.removeItem("access-token"); 
+      }
 
       setLoader(false); 
     });

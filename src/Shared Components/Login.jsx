@@ -4,12 +4,14 @@ import { AuthContext } from "../Provider/Auth/Authprovider";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Login = () => {
   const { register, handleSubmit } = useForm();
   const { LogInUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
@@ -26,15 +28,59 @@ const Login = () => {
       })
       .catch((error) => {
         console.error("Login failed", error);
-        const Errormessage =error.message
-        toast.error(Errormessage , {
-          position: "top-center", 
-          autoClose: 3000, 
+        const Errormessage = error.message;
+        toast.error(Errormessage, {
+          position: "top-center",
+          autoClose: 3000,
           pauseOnHover: true,
           draggable: true,
-          theme: "colored", 
-        })
+          theme: "colored",
+        });
       });
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await googleSignIn();
+      console.log("Google Sign-In Success:", result);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Google login successfull",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      const role = "student";
+
+      const userInfo = {
+        name: result?.user?.displayName,
+        email: result?.user?.email,
+        photo: result?.user?.photoURL,
+        role,
+      };
+      console.log(userInfo);
+
+      const res = await axiosPublic.post("/user", userInfo);
+
+      if (res.data.insertedId) {
+        console.log("DB Response:", res.data);
+        Swal.fire({
+          title: "Google Signup Successful!",
+          icon: "success",
+        });
+      }
+
+      navigate(from, { replace: true });
+
+      // if (res.data.insertedId) {
+
+      // }
+    } catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+      toast.error(error.message, { position: "top-center" });
+    }
   };
 
   return (
@@ -79,20 +125,26 @@ const Login = () => {
           </button>
 
           <p className="my-4 text-base text-white text-center">
-             Or Social Login
+            Or Social Login
           </p>
 
           {/* Google Sign In Button */}
           <button
-            onClick={googleSignIn}
+            onClick={handleGoogleSignIn}
             type="button"
             className="btn btn-primary mt-4 flex items-center justify-center w-full"
           >
             Sign in with Google
           </button>
-            
+
           <p className="my-4 text-base text-white text-center">
-            If you have no account go to  <NavLink className="text-base font-semibold text-green-700" to={ "/signup"}>SignUp</NavLink>
+            If you have no account go to{" "}
+            <NavLink
+              className="text-base font-semibold text-green-700"
+              to={"/signup"}
+            >
+              SignUp
+            </NavLink>
           </p>
         </form>
       </div>

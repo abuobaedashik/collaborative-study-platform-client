@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/Auth/Authprovider";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { span } from "framer-motion/client";
+import { toast, ToastContainer } from "react-toastify";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Register = () => {
-  const { register, handleSubmit ,  formState: { errors } } = useForm();
+  const { register, handleSubmit ,reset ,formState: { errors } } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
+  const axiosPublic =useAxiosPublic();
+  const from = location.state?.from?.pathname || "/";
 
   const { CreateUser, googleSignIn, UpdateUser } = useContext(AuthContext);
 
@@ -16,13 +21,84 @@ const Register = () => {
     CreateUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser, "user create");
-      Swal.fire({
-        title: "Registration Successful!",
-        icon: "success",
-      });
+      // Swal.fire({
+      //   title: "Registration Successful!",
+      //   icon: "success",
+      // });
+      UpdateUser(data?.name,data?.photo)
+      .then(async()=>{
+        console.log("user updated successfull")
+        reset()
+
+        const name = data?.name
+        const email = data?.email
+        const role = data?.role
+        const photo = data?.photo
+
+        const userInfo = { name,email,role,photo};
+        console.log("user info",userInfo)
+
+        const res = await axiosPublic.post("/user", userInfo);
+
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Registration Successful!",
+            icon: "success",
+          });
+          console.log("user data save to database ",res.data)
+        }
+      })
+      
       navigate("/");
     });
   };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await googleSignIn();
+      console.log("Google Sign-In Success:", result);
+
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Google login successfull",
+              showConfirmButton: false,
+              timer: 1500
+            });
+
+      // toast.success("Google Sign-In Successful!", { position: "top-center" });
+       const role = "student"
+   
+      const userInfo = {
+        name: result?.user?.displayName,
+        email: result?.user?.email,
+        photo: result?.user?.photoURL,
+        role 
+      };
+      console.log(userInfo)
+
+      const res = await axiosPublic.post("/user", userInfo)
+      
+      
+      if (res.data.insertedId) {
+        console.log("DB Response:", res.data);
+        Swal.fire({
+          title: "Google Register Successful!",
+          icon: "success",
+        });
+      }
+
+      navigate(from, { replace: true });
+
+      
+    }
+    
+    catch (error) {
+      console.error("Google Sign-In Error:", error.message);
+      toast.error(error.message, { position: "top-center" });
+    }
+  };
+  
   return (
     <div>
       <div className="mt-8 px-12 mx-auto py-10 w-[500px] bg-[#e476e9] rounded-xl border-blue-500">
@@ -85,15 +161,16 @@ const Register = () => {
             </label>
             <input
               type="text"
-              {...register("photoURl",{
+              {...register("photo",{
                 required:true
               })
               }
               className="file-input file-input-bordered file-input-secondary w-full "
             />
+               {errors?.photoURL?.type === "required"  && <span className="text-base font-medium">PhotoURL is not defiend</span>}
           </div>
 
-          {errors.photoURL  && <span className="text-base font-medium">PhotoURL is not defiend</span>}
+       
 
           <div className="form-control">
             <label className="label">
@@ -140,7 +217,7 @@ const Register = () => {
 
           {/* Google Sign In Button */}
           <button
-            onClick={googleSignIn}
+            onClick={handleGoogleSignIn}
             type="button"
             className="btn btn-primary mt-4 flex items-center justify-center w-full"
           >
@@ -158,6 +235,7 @@ const Register = () => {
           </p>
         </form>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
