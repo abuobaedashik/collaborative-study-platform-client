@@ -8,6 +8,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import Manage from "../Pages/Dashboard/Student-Dashboard/ManageNote";
 import ManageNote from "../Pages/Dashboard/Student-Dashboard/ManageNote";
 import CreateNote from "../Pages/Dashboard/Student-Dashboard/CreateNote";
+import AllUser from "../Pages/Dashboard/Admin-Dashboard/AllUser";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/manage-note",
         element: <ManageNote></ManageNote>,
+      },
+      // admin routes
+      {
+        path: "/dashboard/alluser",
+        element:<AllUser></AllUser>,
       },
     ],
   },
