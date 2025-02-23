@@ -10,6 +10,7 @@ import ManageNote from "../Pages/Dashboard/Student-Dashboard/ManageNote";
 import CreateNote from "../Pages/Dashboard/Student-Dashboard/CreateNote";
 import AllUser from "../Pages/Dashboard/Admin-Dashboard/AllUser";
 import NoteDetails from "../Pages/Dashboard/Student-Dashboard/NoteDetails";
+import UpdateNote from "../Pages/Dashboard/Student-Dashboard/UpdateNote";
 
 export const router = createBrowserRouter([
   {
@@ -67,7 +68,13 @@ export const router = createBrowserRouter([
           const res = await fetch(`http://localhost:4000/note/${params.id}`);
           return res.json();
         }
-      }
+      },
+      {
+        path: "/dashboard/updatenote/:id",
+        element: <UpdateNote></UpdateNote>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/note/${params.id}`),
+      },
     ],
   },
 ]);

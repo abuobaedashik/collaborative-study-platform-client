@@ -5,6 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FaTrash, FaUpload } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import DynamicTitle from "../../../Shared Components/DynamicTitle";
+import Swal from "sweetalert2";
+import { BiEdit } from "react-icons/bi";
 
 const ManageNote = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,33 +19,49 @@ const ManageNote = () => {
     },
   });
 
+  //   note delete
+  const handleDeleteNote = (note) => {
+    console.log("note is ", note);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/note/${note._id}`).then((res) => {
+          console.log(res.data);
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Note has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
+  // note update
+  const handleUpdateNote = (note) => {
+    console.log(note);
+  };
 
   return (
     <div className="mx-16">
-      {/* <div className="my-8 mx-auto px-20 py-4 flex flex-col items-center rounded-xl  justify-center bg-[#ffffff] w-full  gap-2 ">
-        <div className="text-3xl flex items-center flex-col rounded-2xl  ">
-          <img src={notemanage} alt="note" />
-          <p className="text-4xl font-bold text-[#0A033C] mb-2">
-            {" "}
-           {" "}
-          </p>
-          <p className="text-base">Total Note : {notes.length}</p>
-        </div>
-        <div className="text-base pl-3 mb-5 font-semibold text-[#131313] ">
-         
-        </div>
-      </div> */}
-      <DynamicTitle 
-       title={ "Manage Note"} 
-       subtitle={`Manage Your Notes Efficiently Easily organize, edit, and delete your
+      <DynamicTitle
+        title={"Manage Note"}
+        subtitle={`Manage Your Notes Efficiently Easily organize, edit, and delete your
           notes to keep track of important information. Stay productive by
           keeping your notes updated and accessible anytime `}
         image={notemanage}
         total={` Your Total Note  : ${notes?.length}`}
-
       ></DynamicTitle>
-
-
 
       <div className="mt-12 px-20  mx-auto py-10 w-full bg-[#ffffff] rounded-xl border-blue-500">
         <div className="overflow-x-auto">
@@ -69,22 +87,23 @@ const ManageNote = () => {
                   </td>
 
                   <td>
-                    <NavLink 
-                   to={`/dashboard/manage-note/notedetails/${note?._id}`} >
+                    <NavLink
+                      to={`/dashboard/manage-note/notedetails/${note?._id}`}
+                    >
                       <button className=" font-semibold btn-ghost  px-4 rounded-md bg-gray-200  py-2 text-red-600">
                         View Note
                       </button>
                     </NavLink>
                   </td>
                   <th className="flex items-center gap-2 flex-col ">
+                    <NavLink to={`/dashboard/updatenote/${note._id}`}>
+                      <button className="font-medium rounded-md bg-[#0a033c83] hover:bg-[#0a033c45] px-6 py-1 text-[#ffffff]">
+                       <BiEdit></BiEdit>
+                      </button>
+                    </NavLink>
+
                     <button
-                      // onClick={() => handleDeleteUser(user)}
-                      className="font-medium rounded-md bg-orange-600 hover:bg-orange-400 px-2 py-1 text-[#ffffff]"
-                    >
-                      Update
-                    </button>
-                    <button
-                      // onClick={() => handleDeleteUser(user)}
+                      onClick={() => handleDeleteNote(note)}
                       className="font-medium rounded-md bg-[#0a033c] hover:bg-[#0a033cd3] px-6 py-1 text-[#ffffff]"
                     >
                       <FaTrash></FaTrash>

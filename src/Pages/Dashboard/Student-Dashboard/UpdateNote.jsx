@@ -1,48 +1,52 @@
 import React, { useContext } from "react";
-// import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import { useForm } from "react-hook-form";
+import DynamicTitle from "../../../Shared Components/DynamicTitle";
+import update from "../../../assets/image/details.png";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { AuthContext } from "../../../Provider/Auth/Authprovider";
-import { IoIosCreate } from "react-icons/io";
-import note from "../../../assets/image/noteicon.png";
+import { useForm } from "react-hook-form";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import DynamicTitle from "../../../Shared Components/DynamicTitle";
 
-const CreateNote = () => {
+const UpdateNote = () => {
+  const { title, description, email, _id } = useLoaderData();
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
-  const { register, handleSubmit ,reset} = useForm();
+  const navigate =useNavigate()
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-   
-  axiosPublic.post('/note',data)
-    
-      .then(res=>{
-          console.log(res.data)
+    const noteItem = {
+      title: data.title,
+      description: data.description,
+    };
 
-          if(res.data.insertedId){
-            //  console.log(`${menuItem.name} Added Successfully`)
-             reset();
-            // sweet alert
-            Swal.fire(
-                'Good job!',
-                `Note Added Successfully`,
-                'success'
-            )  
-            }
-      })
-  }
+    axiosPublic
+      .patch(`/note/${_id}`, noteItem)
+
+      .then((res) => {
+        console.log(res.data);
+
+        if (res.data.modifiedCount > 0) {
+          //  console.log(`${menuItem.name} Added Successfully`)
+          reset();
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Note has been Updated",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate(`/dashboard/manage-note/notedetails/${_id}`)
+         
+        }
+      });
+  };
   return (
-    <div className="mx-16">
+    <div>
       <DynamicTitle
-       title={ "Create Note"} 
-       subtitle={` Keep up the hard work and stay consistent in your studies. Every small
-          effort you put in today will lead to great success in the future. Stay
-          curious, ask questions, and never stop learning. Believe in
-          yourself—you are capable of achieving great things!`}
-        image={note}
-
+        subtitle={"Update Your Notes in Detail"}
+        title={"Update Note"}
+        image={update}
       ></DynamicTitle>
-
       <div className="mt-12 px-20  mx-auto py-10 w-full bg-[#ffffff] rounded-xl border-blue-500">
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Email Field */}
@@ -72,6 +76,7 @@ const CreateNote = () => {
               <input
                 {...register("title", { required: true })}
                 type="text"
+                defaultValue={title}
                 placeholder="Enter your Note Title"
                 className="input input-bordered"
                 required
@@ -86,15 +91,16 @@ const CreateNote = () => {
               </span>
             </label>
             <textarea
-                {...register("description", { required: true })}
+              {...register("description", { required: true })}
+              defaultValue={description}
               placeholder="Enter your Description here"
               className="textarea textarea-bordered textarea-lg w-full "
             ></textarea>
           </div>
           <div className="flex items-center justify-center mt-8">
-             <button className="text-xl font-bold bg-[#0A033C] px-4 rounded-2xl  py-2 text-[#ffffff]">
-                  Add to Node
-             </button>
+            <button className="text-xl font-bold bg-[#0A033C] px-4 rounded-2xl  py-2 text-[#ffffff]">
+              Update Your Note
+            </button>
           </div>
         </form>
       </div>
@@ -102,4 +108,4 @@ const CreateNote = () => {
   );
 };
 
-export default CreateNote;
+export default UpdateNote;
