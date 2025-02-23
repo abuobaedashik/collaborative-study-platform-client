@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useUserRole from "../Hooks/useRole";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
 import { AuthContext } from "../Provider/Auth/Authprovider";
 import { FaUsers } from "react-icons/fa";
 import { BsFillFolderSymlinkFill } from "react-icons/bs";
 import { PiStudent } from "react-icons/pi";
 import { GiTeacher } from "react-icons/gi";
+import { IoIosCreate } from "react-icons/io";
+import icon3 from '../assets/image/iconimg.png'
 
 const DashboardLayout = () => {
   const axiosPublic = useAxiosPublic();
@@ -19,8 +21,12 @@ const DashboardLayout = () => {
     <div className="flex  gap-0">
       <div className=" space-y-2 w-[20%]  min-h-screen  text-base text-[#0A043C] bg-[#E476E9] pt-6 pl-3">
         <p className="pt-3">
-          <p className="text-2xl px-3 font-semibold   text-[#0A043C]">
-            Collaborative
+          <p className="text-2xl px-3 font-semibold flex items-center gap-2   text-[#0A043C]">
+            <img src={icon3} alt="" className="w-[35px] h-[35px]" />
+            <p className="text-2xl font-semibold">
+              {" "}
+              Collaborative 
+            </p>
           </p>
           <p className="text-xl px-3  font-normal uppercase   text-[#0A043C]">
             Study Platform
@@ -60,12 +66,14 @@ const DashboardLayout = () => {
               to="create-note"
               className="flex gap-1 items-center px-3 font-medium"
             >
+              <IoIosCreate />
               Create Note
             </NavLink>
             <NavLink
               to="manage-note"
               className="flex gap-1 items-center px-3 font-medium"
             >
+              <MdManageHistory />
               Manage Note
             </NavLink>
           </>

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import icon1 from "../../src/assets/image/iconbg1.png";
+import icon2 from "../../src/assets/image/iconimg.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/Auth/Authprovider";
 import { toast, ToastContainer } from "react-toastify";
@@ -56,7 +57,7 @@ const Navbar = () => {
       >
         <div className="flex-1 pl-6 md:pl-16">
           <div className=" text-xl font-bold flex gap-3 items-center justify-between">
-            <img src={icon1} alt="" className="w-[35px] h-[35px]" />
+            <img src={icon2} alt="" className="w-[35px] h-[35px]" />
             <p className="text-2xl font-semibold">
               {" "}
               Collaborative Study Platform

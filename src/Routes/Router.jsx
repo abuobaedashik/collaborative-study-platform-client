@@ -9,6 +9,7 @@ import Manage from "../Pages/Dashboard/Student-Dashboard/ManageNote";
 import ManageNote from "../Pages/Dashboard/Student-Dashboard/ManageNote";
 import CreateNote from "../Pages/Dashboard/Student-Dashboard/CreateNote";
 import AllUser from "../Pages/Dashboard/Admin-Dashboard/AllUser";
+import NoteDetails from "../Pages/Dashboard/Student-Dashboard/NoteDetails";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,15 @@ export const router = createBrowserRouter([
         path: "/dashboard/alluser",
         element:<AllUser></AllUser>,
       },
+      // student route
+      {
+        path: "/dashboard/manage-note/notedetails/:id",
+        element: <NoteDetails />,
+        loader: async ({ params }) => {
+          const res = await fetch(`http://localhost:4000/note/${params.id}`);
+          return res.json();
+        }
+      }
     ],
   },
 ]);

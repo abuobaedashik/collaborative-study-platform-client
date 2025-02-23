@@ -13,6 +13,7 @@ const Login = () => {
   const location = useLocation();
   const axiosPublic = useAxiosPublic();
   const from = location.state?.from?.pathname || "/";
+  
 
   const onSubmit = (data) => {
     console.log(data);

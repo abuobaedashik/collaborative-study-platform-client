@@ -87,6 +87,7 @@ const AuthProvider = ({ children }) => {
           
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
+            console.log("token",res.data.token)
           } else {
             console.error("No Token Received from Backend");
           }
