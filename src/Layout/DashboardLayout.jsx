@@ -4,12 +4,13 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useUserRole from "../Hooks/useRole";
 import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
 import { AuthContext } from "../Provider/Auth/Authprovider";
-import { FaUsers } from "react-icons/fa";
+import { FaUpload, FaUsers } from "react-icons/fa";
 import { BsFillFolderSymlinkFill } from "react-icons/bs";
 import { PiStudent } from "react-icons/pi";
 import { GiTeacher } from "react-icons/gi";
 import { IoIosCreate } from "react-icons/io";
 import icon3 from '../assets/image/iconimg.png'
+import { RiGalleryView2 } from "react-icons/ri";
 
 const DashboardLayout = () => {
   const axiosPublic = useAxiosPublic();
@@ -130,15 +131,26 @@ const DashboardLayout = () => {
             <div className="divider text-[#ffffff] pr-3"></div>
 
             <NavLink
-              to="/"
+              to="create-session"
               className="flex gap-1 items-center px-3 font-medium"
             >
-              Check Assignments
+              <IoIosCreate />
+              Create study session
             </NavLink>
+
             <NavLink
-              to="/"
+              to="View-all-sessions"
               className="flex gap-1 items-center px-3 font-medium"
             >
+              <RiGalleryView2 />
+             View All Session
+            </NavLink>
+
+            <NavLink
+              to="upload-materials"
+              className="flex gap-1 items-center px-3 font-medium"
+            >
+              <FaUpload />
               Upload Study Materials
             </NavLink>
           </>

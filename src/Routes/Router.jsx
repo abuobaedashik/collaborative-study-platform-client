@@ -11,6 +11,9 @@ import CreateNote from "../Pages/Dashboard/Student-Dashboard/CreateNote";
 import AllUser from "../Pages/Dashboard/Admin-Dashboard/AllUser";
 import NoteDetails from "../Pages/Dashboard/Student-Dashboard/NoteDetails";
 import UpdateNote from "../Pages/Dashboard/Student-Dashboard/UpdateNote";
+import CreateSession from "../Pages/Dashboard/Tutor-Dashboard/CreateSession";
+import ViewAllSession from "../Pages/Dashboard/Tutor-Dashboard/ViewAllSession";
+import UploadMaterials from "../Pages/Dashboard/Tutor-Dashboard/UploadMaterials";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +78,20 @@ export const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:4000/note/${params.id}`),
       },
+      // tutor route
+      {
+        path: "/dashboard/create-session",
+        element: <CreateSession></CreateSession>,
+      },
+      {
+        path: "/dashboard/View-all-sessions",
+        element: <ViewAllSession></ViewAllSession>,
+      },
+      {
+        path: "/dashboard/upload-materials",
+        element: <UploadMaterials></UploadMaterials>,
+      },
+
     ],
   },
 ]);
