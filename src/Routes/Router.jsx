@@ -14,6 +14,7 @@ import UpdateNote from "../Pages/Dashboard/Student-Dashboard/UpdateNote";
 import CreateSession from "../Pages/Dashboard/Tutor-Dashboard/CreateSession";
 import ViewAllSession from "../Pages/Dashboard/Tutor-Dashboard/ViewAllSession";
 import UploadMaterials from "../Pages/Dashboard/Tutor-Dashboard/UploadMaterials";
+import ViewAllStudySession from "../Pages/Dashboard/Admin-Dashboard/ViewAllStudySession";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/alluser",
         element:<AllUser></AllUser>,
+      },
+      {
+        path: "/dashboard/view-all-session",
+        element:<ViewAllStudySession></ViewAllStudySession>,
       },
       // student route
       {

@@ -105,6 +105,13 @@ const DashboardLayout = () => {
             </NavLink>
 
             <NavLink
+              to="view-all-session"
+              className="flex gap-1 items-center px-3 font-medium"
+            >
+              <BsFillFolderSymlinkFill />
+              View All Study Session
+            </NavLink>
+            <NavLink
               to="/"
               className="flex gap-1 items-center px-3 font-medium"
             >
