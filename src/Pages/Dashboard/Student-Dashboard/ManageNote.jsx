@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import notemanage from "../../../assets/image/manage1.png";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
@@ -7,17 +7,20 @@ import { NavLink } from "react-router-dom";
 import DynamicTitle from "../../../Shared Components/DynamicTitle";
 import Swal from "sweetalert2";
 import { BiEdit } from "react-icons/bi";
+import { AuthContext } from "../../../Provider/Auth/Authprovider";
 
 const ManageNote = () => {
   const axiosPublic = useAxiosPublic();
+  const {user} =useContext(AuthContext)
 
   const { data: notes = [], refetch } = useQuery({
     queryKey: ["notes"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/note");
+      const res = await axiosPublic.get(`/note/email/${user.email}`);
       return res.data;
     },
   });
+  console.log(notes)
 
   //   note delete
   const handleDeleteNote = (note) => {

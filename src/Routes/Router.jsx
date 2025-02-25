@@ -16,6 +16,10 @@ import ViewAllSession from "../Pages/Dashboard/Tutor-Dashboard/ViewAllSession";
 import UploadMaterials from "../Pages/Dashboard/Tutor-Dashboard/UploadMaterials";
 import ViewAllStudySession from "../Pages/Dashboard/Admin-Dashboard/ViewAllStudySession";
 import UpdateSession from "../Pages/Dashboard/Admin-Dashboard/UpdateSession";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/Auth/Authprovider";
+
+
 
 export const router = createBrowserRouter([
   {
@@ -69,7 +73,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/updatesession/:id",
         element: <UpdateSession></UpdateSession>,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/session/${params.id}`),
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/session/${params.id}`),
       },
       {
         path: "/dashboard/view-all-session",
@@ -80,7 +84,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/manage-note/notedetails/:id",
         element: <NoteDetails />,
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:4000/note/${params.id}`);
+          const res = await fetch(`https://collaborative-study-platform-server-one.vercel.app/note/${params.id}`);
           return res.json();
         }
       },
@@ -88,7 +92,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/updatenote/:id",
         element: <UpdateNote></UpdateNote>,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000/note/${params.id}`),
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/note/${params.id}`),
       },
       // tutor route
       {
