@@ -15,6 +15,7 @@ import CreateSession from "../Pages/Dashboard/Tutor-Dashboard/CreateSession";
 import ViewAllSession from "../Pages/Dashboard/Tutor-Dashboard/ViewAllSession";
 import UploadMaterials from "../Pages/Dashboard/Tutor-Dashboard/UploadMaterials";
 import ViewAllStudySession from "../Pages/Dashboard/Admin-Dashboard/ViewAllStudySession";
+import UpdateSession from "../Pages/Dashboard/Admin-Dashboard/UpdateSession";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/alluser",
         element:<AllUser></AllUser>,
+      },
+      {
+        path: "/dashboard/updatesession/:id",
+        element: <UpdateSession></UpdateSession>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/session/${params.id}`),
       },
       {
         path: "/dashboard/view-all-session",

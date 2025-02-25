@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import DynamicTitle from "../../../Shared Components/DynamicTitle";
 import sessionimg from "../../../assets/image/sessionall.png";
 import { ToastContainer } from "react-toastify";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaUpload } from "react-icons/fa";
+import { MdDoNotDisturb, MdOutlineUpdate } from "react-icons/md";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router-dom";
 
 const ViewAllStudySession = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,6 +18,25 @@ const ViewAllStudySession = () => {
       return res.data;
     },
   });
+
+  // approved ,rejected and pending sessions
+
+  const approvedSessions = useMemo(
+    () => sessions.filter((session) => session.status === "approved"),
+    [sessions]
+  );
+
+  const rejectedSessions = useMemo(
+    () => sessions.filter((session) => session.status === "rejected"),
+    [sessions]
+  );
+
+  const pendingSessions = useMemo(
+    () => sessions.filter((session) => session.status === "pending"),
+    [sessions]
+  );
+
+  console.log(approvedSessions, rejectedSessions, pendingSessions);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
@@ -90,78 +111,238 @@ const ViewAllStudySession = () => {
         title="View All Study Sessions"
         subtitle="Explore and Manage Your Study Sessions Effortlessly"
         total={`Total Sessions: ${sessions.length}`}
+        total2={`Total Pending Sessions: ${pendingSessions.length}`}
+        total3={`Total Approved Sessions: ${approvedSessions.length}`}
+        total4={`Total Rejected Sessions: ${rejectedSessions.length}`}
+        // todo create more beautiful ui
         image={sessionimg}
       />
 
-      <div className="mt-5 bg-white py-4 px-6 w-full rounded-lg">
-        <div className="overflow-x-auto">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Session Image</th>
-                <th>Tutor Info</th>
-                <th>Status</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sessions.map((session, index) => (
-                <tr key={session._id}>
-                  <td>{index + 1}</td>
-                  <td>
-                    <div className="h-12 w-12 rounded-sm overflow-hidden">
-                      <img
-                        src={session.banner}
-                        alt="Session"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <p className="text-xl font-semibold">{session.name}</p>
-                    <p className="text-base text-gray-600">{session.email}</p>
-                  </td>
-                  <td>
-                    {session.status === "pending" ? (
-                      <select
-                        onChange={(e) =>
-                          handleStatusUpdate(session._id, e.target.value)
-                        }
-                        className="border border-gray-300 px-3 py-1 rounded-md"
-                        defaultValue="pending"
-                      >
-                        <option value="pending" disabled>
-                          Pending
-                        </option>
-                        <option value="approved">Approved</option>
-                        <option value="rejected">Rejected</option>
-                      </select>
-                    ) : (
-                      <span
-                        className={`px-4 py-1 rounded-md text-white ${
-                          session.status === "approved"
-                            ? "bg-green-500"
-                            : "bg-red-500"
-                        }`}
-                      >
-                        {session.status}
-                      </span>
-                    )}
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDlete(session)}
-                      className="btn bg-red-600 text-white px-2 py-1"
-                    >
-                      <FaTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* pending session */}
+      <div className="mt-5 bg-white py-4 px-6 w-full rounded-lg my-16">
+        <div className="justify-center items-center   flex flex-col mb-3  gap-1">
+          <p className="my-3 text-3xl font-bold"> Pending Session </p>
+          <p className=" font-semibold text-base">
+            {" "}
+            Total pending Sessions : {pendingSessions?.length}{" "}
+          </p>
         </div>
+        {pendingSessions.length > 0 ? (
+          <>
+            <div className="overflow-x-auto">
+              <table className="table w-full">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Session Image</th>
+                    <th>Tutor Info</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pendingSessions.map((session, index) => (
+                    <tr key={session._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <div className="h-12 w-12 rounded-sm overflow-hidden">
+                          <img
+                            src={session.banner}
+                            alt="Session"
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <p className="text-xl font-semibold">{session.name}</p>
+                        <p className="text-base text-gray-600">
+                          {session.title}
+                        </p>
+                      </td>
+                      <td>
+                        {session.status === "pending" ? (
+                          <select
+                            onChange={(e) =>
+                              handleStatusUpdate(session._id, e.target.value)
+                            }
+                            className="border border-gray-300 px-3 py-1 rounded-md"
+                            defaultValue="pending"
+                          >
+                            <option value="pending" disabled>
+                              Pending
+                            </option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                          </select>
+                        ) : (
+                          <span
+                            className={`px-4 py-1 rounded-md text-white ${
+                              session.status === "approved"
+                                ? "bg-green-500"
+                                : "bg-red-500"
+                            }`}
+                          >
+                            {session.status}
+                          </span>
+                        )}
+                      </td>
+                      <td>
+                        <div className="text-base px-2 py-1 text-center rounded-xl w-[60px] flex items-center justify-center bg-red-300">
+                          <MdDoNotDisturb />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-center">No Pending Session </div>
+          </>
+        )}
+      </div>
+
+      {/* approved session */}
+      <div className="mt-5 bg-white py-4 px-6 w-full rounded-lg mb-16">
+        <div className="justify-center items-center   flex flex-col mb-3  gap-1">
+          <p className="my-3 text-3xl font-bold"> Approved Session </p>
+          <p className=" font-semibold text-base">
+            {" "}
+            Total Approved Sessions : {approvedSessions?.length}{" "}
+          </p>
+        </div>
+        {approvedSessions.length > 0 ? (
+          <>
+            <div className="overflow-x-auto">
+              <table className="table w-full">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Session Image</th>
+                    <th>Tutor Info</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {approvedSessions.map((session, index) => (
+                    <tr key={session._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <div className="h-12 w-12 flex gap-1 rounded-sm overflow-hidden">
+                          <img
+                            src={session?.banner}
+                            alt="Session"
+                            className="h-full w-full object-cover"
+                          />
+                         
+                        </div>
+                      </td>
+                      <td>
+                        <p className="text-xl font-semibold">{session.name}</p>
+                        <p className="text-base text-gray-600">
+                          {session.description}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="text-base font-semibold">
+                          {session.status}
+                        </p>
+                      </td>
+                      <td>
+                        <div className="flex items-center flex-col gap-2">
+                          <NavLink
+                            to={`/dashboard/updatesession/${session._id}`}
+                          >
+                            <button className="rounded-xl bg-red-600 text-white px-4 py-2">
+                              <MdOutlineUpdate />
+                            </button>
+                          </NavLink>
+                          <button
+                            onClick={() => handleDlete(session)}
+                            className="rounded-xl  bg-red-600 text-white px-4 py-2"
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-center">No Approved Session </div>
+          </>
+        )}
+      </div>
+
+      {/* rejected session */}
+      <div className="mt-5 bg-white py-4 px-6 w-full rounded-lg mb-16">
+        <div className="justify-center items-center   flex flex-col mb-3  gap-1">
+          <p className="my-3 text-3xl font-bold"> Rejected Session </p>
+          <p className=" font-semibold text-base">
+            {" "}
+            Total Rejected Sessions : {rejectedSessions?.length}{" "}
+          </p>
+        </div>
+        {rejectedSessions.length > 0 ? (
+          <>
+            <div className="overflow-x-auto">
+              <table className="table w-full">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Session Image</th>
+                    <th>Tutor Info</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rejectedSessions.map((session, index) => (
+                    <tr key={session._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <div className="h-12 w-12 rounded-sm overflow-hidden">
+                          <img
+                            src={session.banner}
+                            alt="Session"
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                      </td>
+                      <td>
+                        <p className="text-xl font-semibold">{session.name}</p>
+                        <p className="text-base text-gray-600">
+                          {session.email}
+                        </p>
+                      </td>
+                      <td>
+                        <p className="text-base font-semibold">
+                          {session.status}
+                        </p>
+                      </td>
+                      <td>
+                        <div className="text-base px-2 py-1 text-center rounded-xl w-[60px] flex items-center justify-center bg-red-300">
+                          <MdDoNotDisturb />
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="text-center">No Rejected Session </div>
+          </>
+        )}
         <ToastContainer />
       </div>
 

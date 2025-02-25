@@ -1,7 +1,7 @@
 import { title } from "framer-motion/client";
 import React from "react";
 
-const DynamicTitle = ({subtitle,title,image,total}) => {
+const DynamicTitle = ({subtitle,title,image,total,total2,total3,total4}) => {
   return (
     <div>
       <div className="my-8 mx-auto px-20 py-4 flex flex-col items-center rounded-xl  justify-center bg-[#ffffff] w-full  gap-2 ">
@@ -12,6 +12,9 @@ const DynamicTitle = ({subtitle,title,image,total}) => {
            {title}
           </p>
           <p className="text-base">{total}</p>
+          <p className="text-base">{total2}</p>
+          <p className="text-base">{total3}</p>
+          <p className="text-base">{total4}</p>
         </div>
         <div className="text-base pl-3 mb-5 font-semibold text-[#131313] ">
            {subtitle}

@@ -1,77 +1,141 @@
-import React, { useContext } from "react";
-import DynamicTitle from "../../../Shared Components/DynamicTitle";
-import create from "../../../assets/image/createtutor.png";
-// import { AuthContext } from "../../../Provider/Auth/Authprovider";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useForm } from "react-hook-form";
-import Swal from "sweetalert2";
-import axios from "axios"; // Axios import
+import { useContext } from "react";
 import { AuthContext } from "../../../Provider/Auth/Authprovider";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import axios from "axios";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
+import DynamicTitle from "../../../Shared Components/DynamicTitle";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const CreateSession = () => {
+const UpdateSession = () => {
   const AxiosSecure = useAxiosSecure();
+  const AxiosPublic = useAxiosPublic();
+  const { title, description,startDate, endDate, startTime, endTime,duration,fee, status, banner,_id} = useLoaderData(); 
+  
+
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset, watch } = useForm();
 
+  // const onSubmit = async (data) => {
+  //   if (data.image.length > 0) {
+  //     const formData = new FormData();
+  //     formData.append("image", data.image[0]);
+  
+  //     try {
+  //       const res = await AxiosPublic.post(image_hosting_api, formData, {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       });
+  
+  //       if (res.data.success) {
+  //         const allData = {
+  //           title: data?.title,
+  //           name: user?.displayName,
+  //           email: user?.email,
+  //           description: data.description,
+  //           startDate: data.startDate,
+  //           endDate: data.endDate,
+  //           startTime: data.startTime,
+  //           endTime: data.endTime,
+  //           duration: data.duration,
+  //           fee: data.fee,
+  //           status: data.status,
+  //           banner: res.data.data.url, 
+  //         };
+  //         console.log(allData,"all data ")
+  
+  //         const response = await AxiosPublic.patch(`/session/update/${_id}`, allData);
+  //         console.log(response.data)
+  //         if (response.data.modifiedCount > 0) {
+  //           Swal.fire({
+  //             position: "center",
+  //             icon: "success",
+  //             title: "Session Updated Successfully!",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //           });
+  //         }
+  //       } else {
+  //         console.error("Image upload failed:", res.data); 
+  //       }
+  //     } catch (error) {
+  //       console.error("Error uploading image:", error);
+  //     }
+  //   }
+  // };
+  
+
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]); 
-
-    try {
-      // **Step 1: Image Upload to imgbb**
-      const res = await axios.post(image_hosting_api, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      if (res.data.success) {
-        // **Step 2: Image URL & Form Data Merge**
-        const allData = {
-          title: data.title,
-          name: user?.displayName,
-          email: user?.email,
-          description: data.description,
-          startDate: data.startDate,
-          endDate: data.endDate,
-          startTime: data.startTime,
-          endTime: data.endTime,
-          duration: data.duration,
-          fee: data.fee,
-          status: data.status,
-          banner: res.data.data.url, 
-        };
-
-        // **Step 3: Send Data to Database**
-        const response = await AxiosSecure.post("/session", allData);
-
-        if (response.data.insertedId) {
-          reset(); // Form Reset
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Session Created Successfully!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+    let imageUrl = banner; 
+  
+    if (data.image && data.image.length > 0) { 
+      const formData = new FormData();
+      formData.append("image", data.image[0]);
+  
+      try {
+        const res = await AxiosPublic.post(image_hosting_api, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        if (res.data.success) {
+          imageUrl = res.data.data.url;
+        } else {
+          console.error("Image upload failed:", res.data);
+          return;
         }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        return;
+      }
+    }
+  
+
+    const allData = {
+      title: data?.title,
+      name: user?.displayName,
+      email: user?.email,
+      description: data.description,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      startTime: data.startTime,
+      endTime: data.endTime,
+      duration: data.duration,
+      fee: data.fee,
+      status: data.status,
+      banner: imageUrl, 
+    };
+  
+    try {
+      const response = await AxiosSecure.patch(`/session/update/${_id}`, allData);
+  
+      if (response.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Session Updated Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        reset(); 
       }
     } catch (error) {
-      console.error("Image Upload Failed:", error);
+      console.error("Error updating session:", error);
     }
   };
+  
 
   return (
     <div>
       <DynamicTitle
-        subtitle={
-          "Create a new session by tutor. When admin approves your session, it will be published."
-        }
-        title={"Create Session"}
-        image={create}
+        subtitle={"Update your session details."}
+        title={"Update Session"}
       ></DynamicTitle>
 
       <div className="mt-12 px-20 mx-auto py-10 w-full bg-[#ffffff] rounded-xl border-blue-500">
@@ -88,6 +152,7 @@ const CreateSession = () => {
               type="text"
               placeholder="Enter your session title"
               className="input input-bordered"
+              defaultValue={title}
               required
             />
           </div>
@@ -132,6 +197,7 @@ const CreateSession = () => {
             <textarea
               {...register("description", { required: true })}
               placeholder="Enter session description"
+              defaultValue={description}
               className="textarea textarea-bordered textarea-lg w-full"
             ></textarea>
           </div>
@@ -147,6 +213,7 @@ const CreateSession = () => {
               <input
                 {...register("startDate", { required: true })}
                 type="date"
+                defaultValue={startDate}
                 min={new Date().toISOString().split("T")[0]}
                 className="input input-bordered"
               />
@@ -160,6 +227,7 @@ const CreateSession = () => {
               <input
                 {...register("endDate", { required: true })}
                 type="date"
+                defaultValue={endDate}
                 min={watch("startDate")}
                 className="input input-bordered"
               />
@@ -169,56 +237,26 @@ const CreateSession = () => {
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text text-xl font-bold text-[#131313]">
-                Class start time
+                  Class start time
                 </span>
               </label>
               <input
                 {...register("startTime", { required: true })}
                 type="time"
-                min={new Date().toISOString().split("T")[0]}
+                defaultValue={startTime}
                 className="input input-bordered"
               />
             </div>
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text text-xl font-bold text-[#131313]">
-                 Class End time
+                  Class End time
                 </span>
               </label>
               <input
                 {...register("endTime", { required: true })}
                 type="time"
-                className="input input-bordered"
-              />
-            </div>
-          </div>
-          {/* status */}
-          <div className="flex items-center w-full gap-5">
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text text-xl font-bold text-[#131313]">
-               Status
-                </span>
-              </label>
-              <input
-                {...register("status", { required: true })}
-                type="text"
-                 defaultValue={"pending"}
-                 readOnly
-                className="input input-bordered"
-              />
-            </div>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text text-xl font-bold text-[#131313]">
-               Fee 
-                </span>
-              </label>
-              <input
-                {...register("fee", { required: true })}
-                type="number"
-                defaultValue={0}
-                readOnly
+                defaultValue={endTime}
                 className="input input-bordered"
               />
             </div>
@@ -233,6 +271,7 @@ const CreateSession = () => {
             </label>
             <select
               {...register("duration", { required: true })}
+              defaultValue={duration}
               className="input input-bordered"
             >
               <option disabled selected>
@@ -247,6 +286,37 @@ const CreateSession = () => {
           </div>
 
 
+          {/* session fee and status */}
+          <div className="flex items-center w-full gap-5">
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text text-xl font-bold text-[#131313]">
+               Status
+                </span>
+              </label>
+              <input
+                {...register("status", { required: true })}
+                type="text"
+                 defaultValue={status}
+                 readOnly
+                className="input input-bordered"
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text text-xl font-bold text-[#131313]">
+                 Class End time
+                </span>
+              </label>
+              <input
+                {...register("fee", { required: true })}
+                type="number"
+                defaultValue={fee}
+                className="input input-bordered"
+              />
+            </div>
+          </div>
+
           {/* Image Upload */}
           <div className="form-control w-full">
             <label className="label">
@@ -255,7 +325,7 @@ const CreateSession = () => {
               </span>
             </label>
             <input
-              {...register("image", { required: true })}
+              {...register("image")}
               type="file"
               placeholder="upload session banner"
               accept="image/*"
@@ -273,6 +343,7 @@ const CreateSession = () => {
       </div>
     </div>
   );
+
 };
 
-export default CreateSession;
+export default UpdateSession;
