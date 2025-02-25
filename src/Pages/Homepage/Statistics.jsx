@@ -1,11 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { FaGraduationCap } from "react-icons/fa";
 const statsData = [
-  { id: 1, number: 550, text: "Students Enrolled", icon: "🎓" },
-  { id: 2, number: 100, text: "Satisfaction Rate", icon: "📜" },
-  { id: 3, number: 300, text: "Academic Programs", icon: "📖" },
-  { id: 4, number: 40, text: "Online Instructor", icon: "📺" },
+  { id: 1, number: 550, text: "Students Enrolled"},
+  { id: 2, number: 100, text: "Satisfaction Rate" },
+  { id: 3, number: 300, text: "Academic Programs" },
+  { id: 4, number: 40, text: "Online Instructor" },
 ];
 
 const Statistics = () => {
@@ -21,16 +22,16 @@ const Statistics = () => {
           transition={{ duration: 1, delay: item.id * 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="text-4xl mb-2">{item.icon}</div>
+          {/* <div className="text-4xl mb-2">{item.icon}</div> */}
           <motion.h2
-            className="text-3xl font-bold"
+            className="text-5xl font-bold"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: item.id * 0.2 }}
           >
             <CountUp start={0} end={item.number} duration={2.5} />+
           </motion.h2>
-          <p className="text-gray-300">{item.text}</p>
+          <p className="text-gray-300 font-bold text-xl">{item.text}</p>
         </motion.div>
       ))}
     </div>

@@ -6,12 +6,12 @@ import Statistics from "./Statistics";
 
 const Home = () => {
   return (
-    <div className="">
+    <div className="bg-[#F6F6F6]">
       {/* banner */}
       <div className="mx-auto w-full">
         <Banner></Banner>
       </div>
-      <div className="mx-auto w-10/12">
+      <div className="mx-auto w-[89%]">
         <StudySession></StudySession>
       </div>
 

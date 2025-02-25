@@ -52,21 +52,21 @@ const Navbar = () => {
         className={`navbar max-w-[1920px]  fixed z-10 py-6   transition-all duration-300 ${
           isScrolled
             ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 "
-            : "bg-[#E476E9]"
+            : "bg-[#F6F6F6]"
         }`}
       >
         <div className="flex-1 pl-6 md:pl-16">
-          <div className=" text-xl font-bold flex gap-3 items-center justify-between">
+          <div className=" text-xl font-bold flex gap-3 text-[#0A033C] items-center justify-between">
             <img src={icon2} alt="" className="w-[35px] h-[35px]" />
-            <p className="text-2xl font-semibold">
+            <p className="text-3xl text-[#0A033C] font-bold">
               {" "}
-              Collaborative Study Platform
+              EduHive
             </p>
             <div className="px-12 pl-44 mb-2 navbar-center">
           <NavLink className="text-base font-semibold" to={"/"}>
             Home
           </NavLink>
-          <NavLink className="text-base font-semibold ml-6" to={"/dashboard"}>
+          <NavLink className="text-base font-semibold ml-6" to={"/contact-info"}>
             Contact
           </NavLink>
           <NavLink className="text-base font-semibold ml-6" to={"/dashboard"}>

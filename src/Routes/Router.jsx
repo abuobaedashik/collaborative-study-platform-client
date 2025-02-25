@@ -39,11 +39,9 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/contact",
+        path: "/contact-info",
         element: (
-          <PrivateRoute>
-            <div className="pt-20 mb-[800px]">Contact</div>
-          </PrivateRoute>
+          <div className="pt-44">contact information</div>
         ),
       },
     ],
