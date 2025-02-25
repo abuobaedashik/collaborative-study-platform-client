@@ -18,6 +18,7 @@ import ViewAllStudySession from "../Pages/Dashboard/Admin-Dashboard/ViewAllStudy
 import UpdateSession from "../Pages/Dashboard/Admin-Dashboard/UpdateSession";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Auth/Authprovider";
+import UploadWithSecDtls from "../Pages/Dashboard/Tutor-Dashboard/UploadWithSecDtls";
 
 
 
@@ -96,6 +97,12 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/create-session",
         element: <CreateSession></CreateSession>,
+      },
+      {
+        path: "/dashboard/upload/:id",
+        element: <UploadWithSecDtls></UploadWithSecDtls>,
+        loader: ({ params }) =>
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/secDtlsUpload/${params.id}`),
       },
       {
         path: "/dashboard/View-all-sessions",

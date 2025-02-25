@@ -20,22 +20,22 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex  gap-0">
-      <div className=" space-y-2 w-[20%]  min-h-screen  text-base text-[#0A043C] bg-[#ffffff] shadow-lg pt-6 pl-3">
+      <div className=" space-y-2 w-[35%] sm:w-[20%]  min-h-screen  text-base text-[#0A043C] bg-[#ffffff] shadow-lg pt-6 pl-3">
         <p className="pt-3">
-          <p className="text-2xl px-3 font-semibold flex items-center gap-2   text-[#0A043C]">
+          <p className="text-sm md:text-2xl px-3 font-semibold flex items-center gap-2   text-[#0A043C]">
             <img src={icon3} alt="" className="w-[35px] h-[35px]" />
-            <p className="text-2xl font-semibold">
+            <p className="sm:text-2xl text-sm font-bold">
               {" "}
               Collaborative 
             </p>
           </p>
-          <p className="text-xl px-3  font-normal uppercase   text-[#0A043C]">
+          <p className="sm:text-xl px-3 text-xs  font-senibold uppercase   text-[#0A043C]">
             Study Platform
           </p>
         </p>
 
         <div className="my-5 flex items-center justify-between px-3">
-          <div className="text-xl">{user && <div>{user.displayName}</div>}</div>
+          <div className="text-xs md:text-xl">{user && <div>{user.displayName}</div>}</div>
           <div className="gap-1 items-start text-base  font-semibold text-end mr-3">
             <>
               <img
@@ -183,7 +183,7 @@ const DashboardLayout = () => {
         </p>
       </div>
 
-      <div className="p-6 bg-[#f3cfcf] w-[80%]">
+      <div className="md:p-6 p-2 bg-[#f3cfcf] w-[65%] sm:w-[80%]">
         <Outlet></Outlet>
       </div>
     </div>

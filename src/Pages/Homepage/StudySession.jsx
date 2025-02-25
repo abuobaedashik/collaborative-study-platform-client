@@ -10,7 +10,7 @@ const StudySession = () => {
 
   useEffect(() => {
     axiosPublic.get("/approved-sessions").then((res) => {
-      setsessions(res.data);
+      setsessions(res.data.slice(0, 6));
     });
   }, [axiosPublic]);
 
@@ -39,10 +39,10 @@ const StudySession = () => {
                 alt={session?.title}
                 className="w-full h-48 object-cover"
               />
-              <div className="p-4 mx-6">
+              <div className="p-4 mx-6 min-h-[200px] flex items-center justify-center flex-col">
                 <h2 className="text-xl font-bold text-gray-800">{session.title}</h2>
-                <p className="text-gray-600 text-sm mt-2">{session.description}</p>
-                <div className="flex justify-between items-center mt-4">
+                <p className="text-gray-600 text-sm mt-2">{session.description.slice(0, 140)}....</p>
+                <div className="flex justify-between items-center gap-8 mt-4">
                   <button className="py-2 font-extrabold rounded-lg bg-[#0A033C] text-[#ffffff] px-5 ">Read More</button>
                   {/* <span
                     className={`badge ${

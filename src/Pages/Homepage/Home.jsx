@@ -11,12 +11,11 @@ const Home = () => {
       <div className="mx-auto w-full">
         <Banner></Banner>
       </div>
-      <div className="mx-auto w-[89%]">
-        <StudySession></StudySession>
-      </div>
-
       <div className="w-full ">
           <Statistics></Statistics>
+      </div>
+      <div className="mx-auto pb-[86px] w-[89%]">
+        <StudySession></StudySession>
       </div>
 
     </div>

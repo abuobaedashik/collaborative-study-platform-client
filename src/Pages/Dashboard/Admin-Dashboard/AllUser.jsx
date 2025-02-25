@@ -85,7 +85,7 @@ const AllUser = () => {
   console.log(users);
   return (
     <div>
-      <div className="my-8 px-6 py-4 flex bg-[#ffffff] w-full justify-between gap-16 items-center">
+      <div className="my-8 px-2 md:px-6 py-4 flex bg-[#ffffff] w-full justify-between gap-6 md:gap-16 items-center">
         <div className="text-3xl  rounded-2xl  py-5 font-semibold text-[#0A033C]">
           Total Users : {users.length}{" "}
         </div>
@@ -103,7 +103,7 @@ const AllUser = () => {
         </div>
       </div>
 
-      <div className="mt-5 bg-[#ffffff] py-4 px-6 w-full rounded-lg">
+      <div className="mt-5 bg-[#ffffff] py-4 md:px-6 w-full rounded-lg">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

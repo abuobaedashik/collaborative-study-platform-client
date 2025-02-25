@@ -240,7 +240,7 @@ const ViewAllSession = () => {
                           className="text-base flex gap-1 items-center bg-[#E476E9] font-bold text-[#ffffff]  px-2 py-1 rounded-md"
                           onClick={() => handleStatusChange(session._id)}
                         >
-                            <IoGitPullRequestSharp />
+                          <IoGitPullRequestSharp />
                           Request for Pending
                         </button>
                       </td>
