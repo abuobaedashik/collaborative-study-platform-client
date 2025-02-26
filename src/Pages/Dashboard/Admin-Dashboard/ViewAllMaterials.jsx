@@ -79,7 +79,7 @@ const ViewAllMaterials = () => {
               </h2>
               <p className="text-gray-600 text-sm mt-2">{material.sessionId}</p>
               <div className="flex justify-between items-center gap-8 mt-4">
-                <NavLink to={material.link} className="inline-block">
+                <NavLink to={material.link} target="_blank" rel="noopener noreferrer" className="inline-block">
                   <button className="py-2 font-extrabold flex items-center gap-2 rounded-lg bg-[#0A033C] text-white px-5 hover:bg-[#09022a] transition">
                     Link
                   </button>

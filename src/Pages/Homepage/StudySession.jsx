@@ -3,11 +3,15 @@ import { AuthContext } from "../../Provider/Auth/Authprovider";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { FaClock } from "react-icons/fa";
 import moment from "moment/moment";
+import { NavLink } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const StudySession = () => {
   const [sessions, setsessions] = useState([]);
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     axiosPublic.get("/approved-sessions").then((res) => {
@@ -15,8 +19,11 @@ const StudySession = () => {
     });
   }, [axiosPublic]);
 
-  const currentDate = moment().format("YYYY-MM-DD");
 
+
+
+
+  const currentDate = moment().format("YYYY-MM-DD");
 
   //   useEffect(() => {
   //     const today = new Date();
@@ -54,9 +61,11 @@ const StudySession = () => {
                     {session.description.slice(0, 140)}....
                   </p>
                   <div className="flex justify-between items-center gap-8 mt-4">
-                    <button className="py-2 font-extrabold rounded-lg bg-[#0a033cec] text-[#ffffff] px-5 ">
-                      Read More
-                    </button>
+                    <NavLink to={`sesssionDetails/${session._id}`}>
+                      <button className="py-2 font-extrabold rounded-lg bg-[#0a033cec] text-[#ffffff] px-5 ">
+                        Read More
+                      </button>
+                    </NavLink>
                     <button
                       className={` px-4 py-2 rounded-lg font-bold   ${
                         isClosed

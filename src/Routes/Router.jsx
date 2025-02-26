@@ -22,6 +22,8 @@ import UploadWithSecDtls from "../Pages/Dashboard/Tutor-Dashboard/UploadWithSecD
 import ViewMaterials from "../Pages/Dashboard/Tutor-Dashboard/ViewMaterials";
 import UpdatedMaterials from "../Pages/Dashboard/Tutor-Dashboard/UpdatedMaterials";
 import ViewAllMaterials from "../Pages/Dashboard/Admin-Dashboard/ViewAllMaterials";
+import SessionDetails from "../Pages/Homepage/SessionDetails";
+import Payment from "../Pages/Homepage/PAyment";
 
 
 
@@ -43,6 +45,16 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
+        path: "/payment",
+        element: <Payment></Payment>,
+      },
+      {
+        path: "/sesssionDetails/:id",
+        element:<PrivateRoute><SessionDetails></SessionDetails></PrivateRoute>,
+        loader: ({ params }) =>
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/sessionDetails/${params.id}`),
+      },
+      {
         path: "/contact-info",
         element: (
           <div className="pt-44">contact information</div>
@@ -58,14 +70,6 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      {
-        path: "/dashboard/create-note",
-        element: <CreateNote></CreateNote>,
-      },
-      {
-        path: "/dashboard/manage-note",
-        element: <ManageNote></ManageNote>,
-      },
       // admin routes
       {
         path: "/dashboard/alluser",
@@ -99,6 +103,14 @@ export const router = createBrowserRouter([
         element: <UpdateNote></UpdateNote>,
         loader: ({ params }) =>
           fetch(`https://collaborative-study-platform-server-one.vercel.app/note/${params.id}`),
+      },
+      {
+        path: "/dashboard/create-note",
+        element: <CreateNote></CreateNote>,
+      },
+      {
+        path: "/dashboard/manage-note",
+        element: <ManageNote></ManageNote>,
       },
       // tutor route
       {
