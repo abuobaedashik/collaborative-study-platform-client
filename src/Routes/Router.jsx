@@ -19,6 +19,8 @@ import UpdateSession from "../Pages/Dashboard/Admin-Dashboard/UpdateSession";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/Auth/Authprovider";
 import UploadWithSecDtls from "../Pages/Dashboard/Tutor-Dashboard/UploadWithSecDtls";
+import ViewMaterials from "../Pages/Dashboard/Tutor-Dashboard/ViewMaterials";
+import UpdatedMaterials from "../Pages/Dashboard/Tutor-Dashboard/UpdatedMaterials";
 
 
 
@@ -111,6 +113,16 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/upload-materials",
         element: <UploadMaterials></UploadMaterials>,
+      },
+      {
+        path: "/dashboard/view-all-materials",
+        element: <ViewMaterials></ViewMaterials>,
+      },
+      {
+        path: "/dashboard/updatematerials/:id",
+        element: <UpdatedMaterials></UpdatedMaterials>,
+        loader: ({ params }) =>
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/material/updateSingle/${params.id}`),
       },
 
     ],

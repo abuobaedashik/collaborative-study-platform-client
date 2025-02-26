@@ -1,71 +1,83 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import DynamicTitle from "../../../Shared Components/DynamicTitle";
-import axios from "axios";
-import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../Provider/Auth/Authprovider";
+import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const UploadWithSecDtls = () => {
+const UpdatedMaterials = () => {
+  const { title, sessionId, materialImage, link, email, _id } = useLoaderData();
   const AxiosSecure = useAxiosSecure();
+  const AxiosPublic = useAxiosPublic();
+
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset, watch } = useForm();
-  const session = useLoaderData();
-  console.log(session);
 
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
+    const onSubmit = async (data) => {
+      let imageUrl = materialImage;
 
-    try {
-      const res = await axios.post(image_hosting_api, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      if (data.image && data.image.length > 0) {
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
 
-      console.log(res.data.data)
+        try {
+          const res = await AxiosPublic.post(image_hosting_api, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
 
-      if (res.data.success) {
-        const allData = {
-          title: session.title,
-          sessionId: session._id,
-          email: user?.email,
-          materialImage: res.data.data.url,
-          link: data.link,
-        };
+          if (res.data.success) {
+            imageUrl = res.data.data.url;
+          } else {
+            console.error("Image upload failed:", res.data);
+            return;
+          }
+        } catch (error) {
+          console.error("Error uploading image:", error);
+          return;
+        }
+      }
 
-        console.log(allData)
-        const response = await AxiosSecure.post("/material", allData);
+      const allData = {
+        title: data?.title,
+        sessionId:data?.sessionId,
+        email: user?.email,
+        materialImage: imageUrl,
+        link:data.link,
+      };
 
-        if (response.data.insertedId) {
-          reset(); 
+      try {
+        const response = await AxiosSecure.patch(`/material/update/${_id}`, allData);
+
+        if (response.data.modifiedCount > 0) {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "Material Uploaded Successfully!",
+            title: "Material Updated Successfully!",
             showConfirmButton: false,
             timer: 1500,
           });
+          reset();
         }
+      } catch (error) {
+        console.error("Error updating session:", error);
       }
-    } catch (error) {
-      console.error("Image Upload Failed:", error);
-    }
-  };
+    };
+
+
+
   return (
     <div>
       <DynamicTitle
-        title={"Upload Materials"}
-        subtitle={` Keep up the hard work and stay consistent in your studies. Every small
-          effort you put in today will lead to great success in the future. Stay
-          curious, ask questions, and never stop learning. Believe in
+        title={"UpdateMaterials"}
+        subtitle={`  Believe in
           yourself—you are capable of achieving great things!`}
-        // image={note}
       ></DynamicTitle>
 
       <div className="mt-10  py-16 rounded-xl px-20 bg-[#ffffff]  flex items-center justify-center ">
@@ -81,7 +93,7 @@ const UploadWithSecDtls = () => {
               <input
                 {...register("title", { required: true })}
                 type="text"
-                defaultValue={session.title}
+                defaultValue={title}
                 readOnly
                 placeholder="Enter your session title"
                 className="input input-bordered"
@@ -127,9 +139,9 @@ const UploadWithSecDtls = () => {
                 </span>
               </label>
               <input
-                {...register("image", { required: true })}
+                {...register("image")}
                 type="file"
-                placeholder="upload Materials image"
+                placeholder="Update Materials image"
                 accept="image/*"
                 className="file-input file-input-bordered w-full"
               />
@@ -146,6 +158,7 @@ const UploadWithSecDtls = () => {
                 {...register("link", { required: true })}
                 type="text"
                 placeholder="Enter material link"
+                defaultValue={link}
                 className="input input-bordered"
                 required
               />
@@ -154,7 +167,7 @@ const UploadWithSecDtls = () => {
             {/* Submit Button */}
             <div className="flex items-center justify-center mt-8">
               <button className="text-xl font-bold bg-[#0A033C] px-4 rounded-2xl py-2 text-[#ffffff]">
-                Upload Materials
+                Update Materials
               </button>
             </div>
           </form>
@@ -164,4 +177,4 @@ const UploadWithSecDtls = () => {
   );
 };
 
-export default UploadWithSecDtls;
+export default UpdatedMaterials;

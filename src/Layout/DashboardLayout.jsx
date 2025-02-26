@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import useUserRole from "../Hooks/useRole";
-import { MdAdminPanelSettings, MdManageHistory } from "react-icons/md";
+import { MdAdminPanelSettings, MdGridView, MdManageHistory } from "react-icons/md";
 import { AuthContext } from "../Provider/Auth/Authprovider";
 import { FaUpload, FaUsers } from "react-icons/fa";
-import { BsFillFolderSymlinkFill } from "react-icons/bs";
+import { BsFillExclamationSquareFill, BsFillFolderSymlinkFill } from "react-icons/bs";
 import { PiStudent } from "react-icons/pi";
 import { GiTeacher } from "react-icons/gi";
 import { IoIosCreate } from "react-icons/io";
@@ -159,6 +159,13 @@ const DashboardLayout = () => {
             >
               <FaUpload />
               Upload Study Materials
+            </NavLink>
+            <NavLink
+              to="view-all-materials"
+              className="flex gap-1 items-center px-3 font-medium"
+            >
+             <MdGridView />
+             View All Materials
             </NavLink>
           </>
         )}
