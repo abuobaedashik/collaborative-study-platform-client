@@ -143,7 +143,7 @@ const ViewAllSession = () => {
           <p className="my-3 text-3xl font-bold"> Approved Session </p>
           <p className=" font-semibold text-base">
             {" "}
-            Total Approved Sessions : {pending?.length}{" "}
+            Total Approved Sessions : {approved?.length}{" "}
           </p>
         </div>
         {approved.length > 0 ? (

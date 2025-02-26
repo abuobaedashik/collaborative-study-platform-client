@@ -21,6 +21,7 @@ import { AuthContext } from "../Provider/Auth/Authprovider";
 import UploadWithSecDtls from "../Pages/Dashboard/Tutor-Dashboard/UploadWithSecDtls";
 import ViewMaterials from "../Pages/Dashboard/Tutor-Dashboard/ViewMaterials";
 import UpdatedMaterials from "../Pages/Dashboard/Tutor-Dashboard/UpdatedMaterials";
+import ViewAllMaterials from "../Pages/Dashboard/Admin-Dashboard/ViewAllMaterials";
 
 
 
@@ -79,6 +80,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/view-all-session",
         element:<ViewAllStudySession></ViewAllStudySession>,
+      },
+      {
+        path: "/dashboard/view-all-metarials",
+        element:<ViewAllMaterials></ViewAllMaterials>
       },
       // student route
       {

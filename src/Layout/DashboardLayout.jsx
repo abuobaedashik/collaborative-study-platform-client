@@ -112,7 +112,7 @@ const DashboardLayout = () => {
               View All Study Session
             </NavLink>
             <NavLink
-              to="/"
+              to="view-all-metarials"
               className="flex gap-1 items-center px-3 font-medium"
             >
               <BsFillFolderSymlinkFill />
@@ -120,6 +120,8 @@ const DashboardLayout = () => {
             </NavLink>
           </>
         )}
+
+
 
         {/*Tutor dashboard*/}
         {role === "tutor" && (
