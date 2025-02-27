@@ -51,9 +51,9 @@ const ManageNote = () => {
   };
 
   // note update
-  const handleUpdateNote = (note) => {
-    console.log(note);
-  };
+  // const handleUpdateNote = (note) => {
+  //   console.log(note);
+  // };
 
   return (
     <div className="mx-16">

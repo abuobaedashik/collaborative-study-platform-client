@@ -11,6 +11,7 @@ const SessionDetails = () => {
   console.log(session);
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
+  
   const {
     title,
     name,
@@ -26,21 +27,23 @@ const SessionDetails = () => {
     banner,
   } = session;
 
-  const { data: usersData = [], refetch } = useQuery({
-    queryKey: ["usersData", user.email],
+  const { data: usersData = {}, isLoading } = useQuery({
+    queryKey: ["usersData", user?.email],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/user/role/${user.email}`);
+      const res = await axiosPublic.get(`/user/role/${user?.email}`);
       return res.data;
     },
+    enabled: !!user?.email, // email থাকলেই call করবে
   });
-  const role =usersData.role;
 
-  console.log("user role is from",role)
-
-
-   
+  const role = usersData?.role || "unknown";
+  console.log("User role is:", role);
 
   const isClosed = moment(endDate).isBefore(moment(), "day");
+
+  if (isLoading) {
+    return <p className="text-center text-lg font-bold">Loading...</p>;
+  }
 
   return (
     <div className="bg-[#F6F6F6]">
@@ -76,7 +79,7 @@ const SessionDetails = () => {
                 Registration End Date {endDate}
               </div>
               <div className="font-semibold">Class Start Time {startDate} </div>
-              <div className="font-semibold">ClassEnd Time {endDate} </div>
+              <div className="font-semibold">Class End Time {endDate} </div>
               <div className="font-semibold">
                 Class Duration {duration} Hours
               </div>
@@ -90,14 +93,10 @@ const SessionDetails = () => {
             ) : (
               <NavLink to={"/payment"}>
                 <button className="px-4 py-4  w-full rounded-2xl mt-6 font-bold bg-[#0A043C] text-[#ffffff]">
-                  Booked Now
+                  Book Now
                 </button>
               </NavLink>
             )}
-
-            {/* <button className="px-4 py-4 w-full   ">
-              Booked Now
-            </button> */}
           </div>
         </div>
       </div>
