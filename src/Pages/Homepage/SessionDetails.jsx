@@ -5,13 +5,14 @@ import { Link, NavLink, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Provider/Auth/Authprovider";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const SessionDetails = () => {
   const session = useLoaderData();
   console.log(session);
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
-  
+
   const {
     title,
     name,
@@ -33,7 +34,7 @@ const SessionDetails = () => {
       const res = await axiosPublic.get(`/user/role/${user?.email}`);
       return res.data;
     },
-    enabled: !!user?.email, // email থাকলেই call করবে
+    enabled: !!user?.email,
   });
 
   const role = usersData?.role || "unknown";
@@ -47,6 +48,9 @@ const SessionDetails = () => {
 
   return (
     <div className="bg-[#F6F6F6]">
+      <Helmet>
+        <title>Home | Session Details</title>
+      </Helmet>
       <div className="pt-40 px-11/12">
         <div className="flex md:flex-row flex-col mt-10 items-start p-6 justify-between ">
           <div className="md:w-[60%] w-full px-4">
@@ -86,16 +90,30 @@ const SessionDetails = () => {
               <div className="font-semibold">Registration Fee {fee}</div>
             </div>
 
-            {isClosed || role !== "student" ? (
-              <button className="px-4 py-2 w-full rounded-2xl my-8 font-bold bg-[#F3CFCF] text-red-600 cursor-not-allowed">
-                Closed
-              </button>
+            {/* conditional payment button check paid or free .If free add to Bookedcollection but not free gio to payment page.
+            If role is student go to payment page .but not student show disabled button. */}
+
+            {fee == 0 ? (
+              <>
+                {" "}
+                <button className=" px-4 py-4  w-full rounded-2xl mt-6 font-bold bg-[#0a043cf3] text-[#ffffff]">
+                  Free Booked{" "}
+                </button>{" "}
+              </>
             ) : (
-              <NavLink to={"/payment"}>
-                <button className="px-4 py-4  w-full rounded-2xl mt-6 font-bold bg-[#0A043C] text-[#ffffff]">
-                  Book Now
-                </button>
-              </NavLink>
+              <>
+                {isClosed || role !== "student" ? (
+                  <button className="px-4 py-2 w-full rounded-2xl my-8 font-bold bg-[#F3CFCF] text-red-600 cursor-not-allowed">
+                    Closed
+                  </button>
+                ) : (
+                  <NavLink to={`/payment/${session._id}`}>
+                    <button className="px-4 py-4  w-full rounded-2xl mt-6 font-bold bg-[#0A043C] text-[#ffffff]">
+                      Book Now
+                    </button>
+                  </NavLink>
+                )}
+              </>
             )}
           </div>
         </div>

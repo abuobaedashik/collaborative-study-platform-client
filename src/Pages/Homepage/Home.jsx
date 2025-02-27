@@ -3,10 +3,14 @@ import Navbar from "../../Shared Components/Navbar";
 import Banner from "./Banner";
 import StudySession from "./StudySession";
 import Statistics from "./Statistics";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div className="bg-[#F6F6F6]">
+        <Helmet>
+              <title>Home</title>
+            </Helmet>
       {/* banner */}
       <div className="mx-auto w-full">
         <Banner></Banner>

@@ -49,7 +49,7 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={`navbar  md:max-w-[1920px]  fixed z-10 md:py-6 py-2  sm:mb-2 transition-all duration-300 ${
+        className={`navbar  md:max-w-[1920px]  fixed z-50 md:py-6 py-2  sm:mb-2 transition-all duration-300 ${
           isScrolled
             ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 "
             : "bg-[#F3CFCF]"

@@ -41,19 +41,27 @@ const StudySession = () => {
         {" "}
         study session{" "}
       </div>
-      <div className="mt-5 grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-10 items-center justify-between mb-24 ">
+      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 sm:grid-cols-2 gap-10 items-center justify-between mb-24 ">
         {sessions.map((session) => {
           const isClosed = moment(session.endDate).isBefore(moment(), "day");
 
           return (
             <div key={session._id} className="">
               <div className=" bg-white shadow-lg rounded-2xl overflow-hidden">
-                <img
+                  <div className="text-base">
+                  <img
                   src={session?.banner}
                   alt={session?.title}
                   className="w-full h-48 object-cover"
                 />
+                  </div>
+                  <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
+                  {
+                 session.fee == 0 ? "free" : <>{session.fee}$</>
+                  }
+                  </div>
                 <div className="p-4 mx-6 min-h-[200px] flex items-center justify-center flex-col">
+              
                   <h2 className="text-xl font-bold text-gray-800">
                     {session.title}
                   </h2>
@@ -66,6 +74,8 @@ const StudySession = () => {
                         Read More
                       </button>
                     </NavLink>
+
+                    {/* conditional button onging or closed */}
                     <button
                       className={` px-4 py-2 rounded-lg font-bold   ${
                         isClosed

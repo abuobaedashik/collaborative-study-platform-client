@@ -25,7 +25,7 @@ const Banner = () => {
             <button className="btn bg-[#ffffff] z-10">Browse Courses</button>
           </div>
         </div>
-        <div className="image w-full z-10 md:w-[40%]">
+        <div className="image w-full  md:w-[40%]">
           <div className="">
             <img
               src={bannerimg}

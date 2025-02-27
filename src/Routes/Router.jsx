@@ -45,8 +45,10 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/payment",
+        path: "/payment/:id",
         element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/sessionDetails/${params.id}`),
       },
       {
         path: "/sesssionDetails/:id",
