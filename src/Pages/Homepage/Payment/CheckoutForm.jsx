@@ -100,8 +100,8 @@ const CheckoutForm = ({ sessionData }) => {
             });
           }
          })
-         
-         navigate('/')
+
+         navigate('/dashboard/ViewBookedSession')
 
       }      
     }

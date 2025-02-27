@@ -24,10 +24,9 @@ const ViewBookedSession = () => {
       <DynamicTitle
         subtitle={"View Your Booked Session"}
         title={"My Booked Session"}
-        // image={}
       ></DynamicTitle>
         <div className="mt-5 bg-[#ffffff] py-4 px-6 w-full rounded-lg mb-16">
-           <div className="grid grid-cols-3 gap-4 p-4 py-4">
+           <div className="grid grid-cols-3 gap-4 p-4 py-12">
                {
                 mySession.map(session=> <div key={session._id} className="">
                     <div className=" bg-white shadow-lg rounded-2xl overflow-hidden">
