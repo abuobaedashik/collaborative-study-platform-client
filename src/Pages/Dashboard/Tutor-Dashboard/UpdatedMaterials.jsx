@@ -46,7 +46,7 @@ const UpdatedMaterials = () => {
 
       const allData = {
         title: data?.title,
-        sessionId:data?.sessionId,
+        Sessionid:data?.sessionId,
         email: user?.email,
         materialImage: imageUrl,
         link:data.link,

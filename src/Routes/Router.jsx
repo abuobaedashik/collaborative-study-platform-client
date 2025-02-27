@@ -27,6 +27,7 @@ import Payment from "../Pages/Homepage/PAyment";
 import ViewBookedSession from "../Pages/Dashboard/Student-Dashboard/ViewBookedSession";
 import AllMaterialsByAdmin from "../Pages/Dashboard/Student-Dashboard/AllMaterialsByAdmin";
 import StudentHome from "../Pages/Dashboard/Student-Dashboard/StudentHome";
+import CategoriesSession from "../Pages/Dashboard/Student-Dashboard/CategoriesSession";
 
 
 
@@ -91,10 +92,18 @@ export const router = createBrowserRouter([
         element:<ViewAllStudySession></ViewAllStudySession>,
       },
       {
+        path: "/dashboard/view-all-metarials",
+        element:<ViewAllMaterials></ViewAllMaterials>
+      },
+
+
+     
+
+      // student route
+      {
         path: "/dashboard/student/view-provided-materials",
         element:<AllMaterialsByAdmin></AllMaterialsByAdmin>
       },
-      // student route
       {
         path: "/dashboard/manage-note/notedetails/:id",
         element: <NoteDetails />,
@@ -125,6 +134,16 @@ export const router = createBrowserRouter([
         path: "/dashboard/manage-note",
         element: <ManageNote></ManageNote>,
       },
+      {
+        path: "/dashboard/sessionDtils/:id",
+        element: <CategoriesSession></CategoriesSession>,
+        loader: ({ params }) =>
+          fetch(`https://collaborative-study-platform-server-one.vercel.app/sessionDtils/${params.id}`),
+      },
+
+
+
+
       // tutor route
       {
         path: "/dashboard/create-session",

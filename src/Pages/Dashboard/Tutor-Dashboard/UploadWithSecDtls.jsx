@@ -33,7 +33,7 @@ const UploadWithSecDtls = () => {
       if (res.data.success) {
         const allData = {
           title: session.title,
-          sessionId: session._id,
+          Sessionid: session._id,
           email: user?.email,
           materialImage: res.data.data.url,
           link: data.link,

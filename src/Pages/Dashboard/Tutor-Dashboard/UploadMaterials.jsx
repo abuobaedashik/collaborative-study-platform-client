@@ -19,7 +19,7 @@ const UploadMaterials = () => {
       );
       return res.data;
     },
-    enabled: !!user?.email, // Prevent query execution if user.email is undefined
+    enabled: !!user?.email, 
   });
 
   return (

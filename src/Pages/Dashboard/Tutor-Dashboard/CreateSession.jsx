@@ -49,7 +49,7 @@ const CreateSession = () => {
         const response = await AxiosSecure.post("/session", allData);
 
         if (response.data.insertedId) {
-          reset(); // Form Reset
+          reset(); 
           Swal.fire({
             position: "center",
             icon: "success",
