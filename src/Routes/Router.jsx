@@ -24,6 +24,9 @@ import UpdatedMaterials from "../Pages/Dashboard/Tutor-Dashboard/UpdatedMaterial
 import ViewAllMaterials from "../Pages/Dashboard/Admin-Dashboard/ViewAllMaterials";
 import SessionDetails from "../Pages/Homepage/SessionDetails";
 import Payment from "../Pages/Homepage/PAyment";
+import ViewBookedSession from "../Pages/Dashboard/Student-Dashboard/ViewBookedSession";
+import AllMaterialsByAdmin from "../Pages/Dashboard/Student-Dashboard/AllMaterialsByAdmin";
+import StudentHome from "../Pages/Dashboard/Student-Dashboard/StudentHome";
 
 
 
@@ -88,8 +91,8 @@ export const router = createBrowserRouter([
         element:<ViewAllStudySession></ViewAllStudySession>,
       },
       {
-        path: "/dashboard/view-all-metarials",
-        element:<ViewAllMaterials></ViewAllMaterials>
+        path: "/dashboard/student/view-provided-materials",
+        element:<AllMaterialsByAdmin></AllMaterialsByAdmin>
       },
       // student route
       {
@@ -109,6 +112,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/create-note",
         element: <CreateNote></CreateNote>,
+      },
+      {
+        path: "/dashboard/ViewBookedSession",
+        element: <ViewBookedSession></ViewBookedSession>
+      },
+      {
+        path: "/dashboard/ViewAllMaterials",
+        element:<ViewAllMaterials></ViewAllMaterials>
       },
       {
         path: "/dashboard/manage-note",

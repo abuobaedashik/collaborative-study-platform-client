@@ -62,7 +62,13 @@ const DashboardLayout = () => {
               </div>
             </div>
             <div className="divider text-[#ffffff] pr-3"></div>
-
+            <NavLink
+              to="ViewBookedSession"
+              className="flex gap-1 items-center px-3 font-medium"
+            >
+              <IoIosCreate />
+              View booked session
+            </NavLink>
             <NavLink
               to="create-note"
               className="flex gap-1 items-center px-3 font-medium"
@@ -76,6 +82,13 @@ const DashboardLayout = () => {
             >
               <MdManageHistory />
               Manage Note
+            </NavLink>
+            <NavLink
+              to="student/view-provided-materials"
+              className="flex gap-1 items-center px-3 font-medium"
+            >
+              <MdManageHistory />
+             All Materials
             </NavLink>
           </>
         )}
