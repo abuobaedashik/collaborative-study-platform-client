@@ -66,6 +66,7 @@ const ViewBookedSession = () => {
                }
            </div>
         </div>
+        {/* update pfrofile */}
     </div>
 
   );
