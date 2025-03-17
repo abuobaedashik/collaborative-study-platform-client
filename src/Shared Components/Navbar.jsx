@@ -6,6 +6,7 @@ import { AuthContext } from "../Provider/Auth/Authprovider";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 
+
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
