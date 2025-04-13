@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
-    <div className="bg-[#F6F6F6]">
+    <div className="bg-[#F6F6F6] min-h-screen">
         <Helmet>
               <title>Home</title>
             </Helmet>
