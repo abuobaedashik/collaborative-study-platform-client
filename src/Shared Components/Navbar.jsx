@@ -50,19 +50,19 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={`navbar  md:max-w-[1920px]  fixed z-50 md:py-6 py-2  sm:mb-2 transition-all duration-300 ${
+        className={`navbar  md:max-w-[1920px]  fixed z-50 md:py-4 py-2  sm:mb-2 transition-all duration-300 ${
           isScrolled
-            ? "bg-[#FFFFFF]  navbar max-w-[1920px]  fixed z-10 "
-            : "bg-[#F3CFCF]"
+            ? "bg-[#f2f2f2]  navbar max-w-[1920px]  fixed z-10 "
+            : "bg-[#ffffff] "
         }`}
       >
         <div className="md:flex-1 pl-2 md:pl-16">
           <div className=" text-xl font-bold flex gap-3 text-[#0A033C] items-center justify-between">
             <div className="flex item-center">
               <img src={icon2} alt="" className="w-[35px] h-[35px]" />
-              <p className="text-xl  sm:text-3xl text-[#0A033C] font-bold">
+              <p className="text-xl  sm:text-2xl text-[#0A033C] font-bold">
                 {" "}
-                EduHive
+                <span className=" text-[#440ae1]">Edu</span>Hive
               </p>
             </div>
          

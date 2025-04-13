@@ -6,7 +6,7 @@ import svg from "../../../src/assets/image/Untitled.svg";
 
 const Banner = () => {
   return (
-    <div className="relative  md:h-[700px] bg-[#F3CFCF]">
+    <div className="relative  md:h-[700px] bg-[#ffffff]">
       {/* #F5EDFE */}
       <div className="flex items-center flex-col z-10 md:flex-row md:pt-[116px] pt-40 gap-3  justify-between    px-6 md:px-20">
         <div className="text w-full md:w-[40%] ">
