@@ -25,10 +25,10 @@ const SwiperSlider = () => {
       >
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[500px] bg-cover rounded-xl bg-center object-cover bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover rounded-xl bg-center object-cover bg-no-repeat"
             style={{ backgroundImage: `url(${ban1})` }}
           >
-            <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
+            <div className="text-[#FFF100] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
               {" "}
               Collaborative Study Platform
             </div>
@@ -42,10 +42,10 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[500px] bg-cover object-cover rounded-xl bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover object-cover rounded-xl bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban2})` }}
           >
-            <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
+            <div className="text-[#FFD65A] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
               {" "}
               Empowering Students Through Technology
             </div>
@@ -59,7 +59,7 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[500px] bg-cover bg-center rounded-xl object-cover bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center rounded-xl object-cover bg-no-repeat"
             style={{ backgroundImage: `url(${ban3})` }}
           >
             <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
@@ -76,10 +76,10 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[500px] rounded-xl bg-cover bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] rounded-xl bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban4})` }}
           >
-            <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
+            <div className="text-[#FF6600] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
               {" "}
               Learn Together. Grow Together
             </div>
@@ -93,10 +93,10 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[500px] bg-cover rounded-xl bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover rounded-xl bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban5})` }}
           >
-            <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
+            <div className="text-[#FF0000] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
               {" "}
               Your Gateway to Future Excellence
             </div>
