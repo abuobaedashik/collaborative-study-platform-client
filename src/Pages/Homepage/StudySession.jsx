@@ -37,11 +37,11 @@ const StudySession = () => {
   console.log(sessions);
   return (
     <div>
-      <div className="mt-16 text-4xl font-extrabold mb-12 text-center text-[#0A033C]">
+      <div className="mt-16 text-4xl font-extrabold mb-16 text-center text-[#0A033C]">
         {" "}
-        study session{" "}
+        Study Session
       </div>
-      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3 2xl:grid-cols-4 sm:grid-cols-2 gap-10 items-center justify-between mb-24 ">
+      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3  sm:grid-cols-2 gap-10 items-center justify-between mb-24 ">
         {sessions.map((session) => {
           const isClosed = moment(session.endDate).isBefore(moment(), "day");
 
