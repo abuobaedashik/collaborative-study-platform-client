@@ -8,21 +8,23 @@ import WhyChoiceUs from "./WhyChoiceUs";
 
 const Home = () => {
   return (
-    <div className="bg-[#F6F6F6] min-h-screen">
+    <div className=" min-h-screen">
       <Helmet>
         <title>Home</title>
       </Helmet>
       {/* banner */}
-      <div className="mx-auto w-full">
-        <Banner></Banner>
+      <div className="mx-auto w-full ">
+        <div className="px-2">
+          <Banner></Banner>
+          </div>
       </div>
       {/* why choice us  */}
-      <div className="mx-auto pb-[86px] w-11/12">
+      <div className="mx-auto pb-[36px] w-11/12">
         <WhyChoiceUs></WhyChoiceUs>
       </div>
       {/* study session */}
-      <div className="bg-[#ffffff] py-10 w-full">
-        <div className="mx-auto pb-[86px] w-11/12">
+      <div className=" py-2 w-full">
+        <div className="mx-auto pb-[36px] w-11/12">
           <StudySession></StudySession>
         </div>
       </div>

@@ -31,7 +31,7 @@ const features = [
 const WhyChoiceUs = () => {
   return (
     <div>
-      <section className="py-16 ">
+      <section className="py-12 ">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us</h2>
           <p className="text-gray-500 mb-12">
@@ -42,7 +42,7 @@ const WhyChoiceUs = () => {
             {features.map((feature, idx) => (
               <div
                 key={idx}
-                className="card shadow-md bg-[#ffffff] hover:shadow-lg transition"
+                className="card shadow-md bg-[#f6f6f6] hover:shadow-lg transition"
               >
                 <div className="card-body items-center text-center">
                   {feature.icon}

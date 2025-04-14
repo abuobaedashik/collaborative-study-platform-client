@@ -37,7 +37,7 @@ const StudySession = () => {
   console.log(sessions);
   return (
     <div>
-      <div className="mt-16 text-4xl font-extrabold mb-16 text-center text-[#0A033C]">
+      <div className="mt-6 text-4xl font-extrabold mb-16 text-center text-[#0A033C]">
         {" "}
         Study Session
       </div>
@@ -52,7 +52,7 @@ const StudySession = () => {
                   <img
                   src={session?.banner}
                   alt={session?.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-[220px] object-cover"
                 />
                   </div>
                   <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
