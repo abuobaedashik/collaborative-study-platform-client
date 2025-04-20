@@ -37,22 +37,23 @@ const StudySession = () => {
   console.log(sessions);
   return (
     <div>
-      <div className="mt-6 text-4xl font-extrabold mb-16 text-center text-[#0A033C]">
+      <div className="mt-6 text-4xl font-inter font-bold  text-center text-[#0A033C]">
         {" "}
-        Study Session
+        Upcoming Study Session
       </div>
-      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3  sm:grid-cols-2 gap-10 items-center justify-between mb-24 ">
+      <div className="mt-2 text-center text-lg mb-3">Don’t miss this golden opportunity to unlock your potential, gain new skills, and grow with every session.</div>
+      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3  sm:grid-cols-2 gap-6 items-center justify-between mb-24 ">
         {sessions.map((session) => {
           const isClosed = moment(session.endDate).isBefore(moment(), "day");
 
           return (
             <div key={session._id} className="">
-              <div className=" bg-white shadow-lg rounded-2xl overflow-hidden">
+              <div className=" bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.030] duration-300">
                   <div className="text-base">
                   <img
                   src={session?.banner}
                   alt={session?.title}
-                  className="w-full h-[220px] object-cover"
+                  className="w-full h-[220px] hover:scale-[1.060] overflow-hidden duration-300  object-cover"
                 />
                   </div>
                   <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
@@ -60,15 +61,16 @@ const StudySession = () => {
                  session.fee == 0 ? "free" : <>{session.fee}$</>
                   }
                   </div>
-                <div className="p-4 mx-6 min-h-[200px] flex items-center justify-center flex-col">
+                  {/* content */}
+                <div className="p-4 mx-2 items-left  flex flex-col justify-between min-h-[210px]">
               
                   <h2 className="text-xl font-bold text-gray-800">
                     {session.title}
                   </h2>
                   <p className="text-gray-600 text-sm mt-2">
-                    {session.description.slice(0, 140)}....
+                    {session.description.slice(0, 150)}....
                   </p>
-                  <div className="flex justify-between items-center gap-8 mt-4">
+                  <div className="flex justify-between items-center gap-8 mt-2">
                     <NavLink to={`sesssionDetails/${session._id}`}>
                       <button className="py-2 font-extrabold rounded-lg bg-[#0a033cec] text-[#ffffff] px-5 ">
                         Read More

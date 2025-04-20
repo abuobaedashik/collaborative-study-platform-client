@@ -36,7 +36,7 @@ const WhyChoiceUs = () => {
       {/* st */}
       <div>
         <div className="mt-8 mb-2 flex items-center gap-3 flex-col">
-          <div className="mt-4 text-4xl font-bold mb-2 ">
+          <div className="mt-4 font-inter font-bold text-4xl  mb-2 ">
           Why Choose Us
           </div>
           <p className="text-lg font-medium text-justify mb-4">

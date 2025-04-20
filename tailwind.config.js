@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        custom: ['"Ysabeau SC"', "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+        nunito: ["Nunito", "sans-serif"],
+      },
+    },
   },
   plugins: [
     // eslint-disable-next-line no-undef

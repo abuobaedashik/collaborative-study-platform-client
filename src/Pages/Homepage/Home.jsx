@@ -24,7 +24,7 @@ const Home = () => {
       </div>
       {/* study session */}
       <div className=" py-2 w-full">
-        <div className="mx-auto pb-[36px] w-11/12">
+        <div className="mx-auto pb-[34px] w-11/12">
           <StudySession></StudySession>
         </div>
       </div>
