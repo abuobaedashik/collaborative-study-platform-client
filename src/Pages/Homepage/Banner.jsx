@@ -9,7 +9,7 @@ const Banner = () => {
   return (
     <div className=" bg-[#ffffff] ">
       <div className="p-[35.5px]"></div>
-      <div className=" md:h-[550px]  overflow-hidden  rounded-xl">
+      <div className=" md:h-[550px]  overflow-hidden ">
          <SwiperSlider></SwiperSlider>
       </div>
       {/* #F5EDFE */}

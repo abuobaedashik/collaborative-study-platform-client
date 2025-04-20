@@ -8,7 +8,7 @@ import ban5 from "../../assets/walls-io-2BNiI2DV9GI-unsplash.jpg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 import { NavLink } from "react-router-dom";
 
 const SwiperSlider = () => {
@@ -20,12 +20,16 @@ const SwiperSlider = () => {
         pagination={true}
         mousewheel={true}
         keyboard={true}
-        modules={[Navigation, Pagination, Mousewheel, Keyboard]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover rounded-xl bg-center object-cover bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center object-cover bg-no-repeat"
             style={{ backgroundImage: `url(${ban1})` }}
           >
             <div className="text-[#FFF100] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
@@ -42,7 +46,7 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover object-cover rounded-xl bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover object-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban2})` }}
           >
             <div className="text-[#FFD65A] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
@@ -59,7 +63,7 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center rounded-xl object-cover bg-no-repeat"
+            className="flex items-center flex-col justify-center gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center object-cover bg-no-repeat"
             style={{ backgroundImage: `url(${ban3})` }}
           >
             <div className="text-white text-4xl md:text-5xl font-bold drop-shadow-md z-10">
@@ -76,7 +80,7 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] rounded-xl bg-cover bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban4})` }}
           >
             <div className="text-[#FF6600] text-4xl md:text-5xl font-bold drop-shadow-md z-10">
@@ -93,7 +97,7 @@ const SwiperSlider = () => {
         </SwiperSlide>
         <SwiperSlide>
           <div
-            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover rounded-xl bg-center bg-no-repeat"
+            className="flex items-center flex-col justify-center object-cover gap-6 text-2xl font-bold text-white brightness-50  h-[550px] bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${ban5})` }}
           >
             <div className="text-[#FF0000] text-4xl md:text-5xl font-bold drop-shadow-md z-10">

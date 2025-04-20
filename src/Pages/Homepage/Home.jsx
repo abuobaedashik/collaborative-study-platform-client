@@ -14,9 +14,9 @@ const Home = () => {
       </Helmet>
       {/* banner */}
       <div className="mx-auto w-full ">
-        <div className="px-2">
+        <div className="px-0">
           <Banner></Banner>
-          </div>
+        </div>
       </div>
       {/* why choice us  */}
       <div className="mx-auto pb-[36px] w-11/12">
