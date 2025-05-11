@@ -28,6 +28,7 @@ import ViewBookedSession from "../Pages/Dashboard/Student-Dashboard/ViewBookedSe
 import AllMaterialsByAdmin from "../Pages/Dashboard/Student-Dashboard/AllMaterialsByAdmin";
 import StudentHome from "../Pages/Dashboard/Student-Dashboard/StudentHome";
 import CategoriesSession from "../Pages/Dashboard/Student-Dashboard/CategoriesSession";
+import Contact from "../Pages/Contact";
 
 
 
@@ -63,7 +64,7 @@ export const router = createBrowserRouter([
       {
         path: "/contact-info",
         element: (
-          <div className="pt-44">contact information</div>
+          <Contact></Contact>
         ),
       },
     ],

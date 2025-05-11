@@ -8,7 +8,7 @@ import SwiperSlider from "./SwiperSlider";
 const Banner = () => {
   return (
     <div className=" bg-[#ffffff] ">
-      <div className="p-[35.5px]"></div>
+      <div className="p-[30px]"></div>
       <div className=" md:h-[550px]  overflow-hidden ">
          <SwiperSlider></SwiperSlider>
       </div>

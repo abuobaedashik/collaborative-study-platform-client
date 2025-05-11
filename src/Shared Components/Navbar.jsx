@@ -6,7 +6,6 @@ import { AuthContext } from "../Provider/Auth/Authprovider";
 import { toast, ToastContainer } from "react-toastify";
 import Swal from "sweetalert2";
 
-
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,10 +49,10 @@ const Navbar = () => {
   return (
     <div>
       <div
-        className={`navbar md:max-w-[1920px] fixed z-50 md:py-2 py-2 sm:mb-2 transition-all duration-300 ${
+        className={`navbar md:max-w-[1920px] fixed z-50   transition-all duration-300 ${
           isScrolled
-            ? "bg-[#f2f2f2] navbar max-w-[1920px]  fixed z-10 "
-            : "bg-[#ffffff] "
+            ? "bg-[#ffffff] navbar max-w-[1920px]  fixed z-10 shadow-xl "
+            : "bg-[#f2f2f2] "
         }`}
       >
         <div className="md:flex-1 pl-2 md:pl-16 ">
@@ -62,35 +61,72 @@ const Navbar = () => {
               <img src={icon2} alt="" className="w-[35px] h-[35px]" />
               <p className="text-xl  sm:text-2xl text-[#0A033C] font-bold">
                 {" "}
-                <span className=" text-[#440ae1]">Edu</span>Hive
+                <span className=" text-[#0A5EB0]">Edu</span>Hive
               </p>
             </div>
-         
           </div>
         </div>
 
         <div className="px-12 flex items-center text-xl font-bold text-[#0A033C]  mb-2 navbar-center">
-              <NavLink
-                className="text-base hidden md:flex font-semibold"
-                to={"/"}
-              >
-                Home
-              </NavLink>
-              <NavLink
+          {/* home */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "flex gap-1 text-[#0A5EB0] font-roboto font-semibold text-sm  px-3 items-center "
+                : " flex gap-1 items-center text-[#131313]  px-3 font-roboto font-semibold text-sm "
+            }
+            to="/"
+          >
+            Home
+          </NavLink>
+          {/* contact */}
+          {/* <NavLink
                 className="text-base hidden md:flex font-semibold ml-6"
                 to={"/contact-info"}
               >
                 Contact
-              </NavLink>
-              {user && (
-                <NavLink
-                  className="text-base font-semibold sm:ml-6"
-                  to={"/dashboard"}
-                >
-                  Dashboard
-                </NavLink>
-              )}
-            </div>
+              </NavLink> */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "flex gap-1 text-[#0A5EB0] font-roboto font-semibold text-sm  px-3 items-center "
+                : " flex gap-1 items-center text-[#131313]  px-3 font-roboto font-semibold text-sm "
+            }
+            to="/contact-info"
+          >
+            Contact
+          </NavLink>
+          {/* announcement ----------------------------------todo */}
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "flex gap-1 text-[#0A5EB0] font-roboto font-semibold text-sm  px-3 items-center "
+                : " flex gap-1 items-center text-[#131313]  px-3 font-roboto font-semibold text-sm "
+            }
+            to="/announcement"
+          >
+           Announcement
+          </NavLink>
+
+          {user && (
+            // <NavLink
+            //   className="text-base font-semibold sm:ml-6"
+            //   to={"/dashboard"}
+            // >
+            //   Dashboard
+            // </NavLink>
+            <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "flex gap-1 text-[#0A5EB0] font-roboto font-semibold text-sm  px-3 items-center "
+                : " flex gap-1 items-center text-[#2A3335]  px-3 font-roboto font-semibold text-sm "
+            }
+            to="/dashboard"
+          >
+            Dashboard
+          </NavLink>
+          )}
+        </div>
 
         <div className="flex-none md:pr-16">
           <div className="dropdown dropdown-end">
@@ -130,9 +166,7 @@ const Navbar = () => {
                           : "md:flex gap-1 items-center text-sm font-medium px-3"
                       }
                       to={"/signup"}
-                    >
-                      <button>Signup</button>
-                    </NavLink>
+                    ></NavLink>
                     <NavLink
                       className={({ isActive }) =>
                         isActive

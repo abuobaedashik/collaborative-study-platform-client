@@ -5,6 +5,7 @@ import StudySession from "./StudySession";
 import Statistics from "./Statistics";
 import { Helmet } from "react-helmet-async";
 import WhyChoiceUs from "./WhyChoiceUs";
+import ReviewSection from "./ReviewSection";
 
 const Home = () => {
   return (
@@ -28,9 +29,11 @@ const Home = () => {
           <StudySession></StudySession>
         </div>
       </div>
-
       <div className="w-full my-8">
         <Statistics></Statistics>
+      </div>
+      <div className="mx-auto pb-[36px] w-11/12">
+        <ReviewSection></ReviewSection>
       </div>
     </div>
   );
