@@ -3,7 +3,11 @@ import icon1 from "../../../src/assets/image/iconbg1.png";
 import icon2 from "../../../src/assets/image/sparkles.png";
 import icon3 from "../../../src/assets/image/iconbg3.png";
 import svg from "../../../src/assets/image/Untitled.svg";
-import SwiperSlider from "./SwiperSlider";
+import ban1 from "../../assets/banner-img1.jpg";
+import ban2 from "../../assets/banner-img2.jpg";
+// import ban3 from "../../assets/banner-img3.avif";  
+import ban4 from "../../assets/banner-img4.jpg";
+import ban5 from "../../assets/banner-img5.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -20,7 +24,7 @@ const Banner = () => {
         <div className="banner-full w-11/12 gap-[14px] sm:flex items-center justify-center   mx-auto ">
           {/* left side text */}
           <div className="left-side-text sm:w-[49%] w-full flex flex-col gap-4 items-start justify-center p-3">
-            <div className="title-small text-base text-[#fe753f] font-nunito">
+            <div className="title-small text-lg text-[#fe753f] font-nunito">
               Collaborative Learning, Smart Future
             </div>
             <div className="title-banner text-[#1a2330] font-extrabold text-[2.7rem] leading-[2.9rem] tracking-normal  font-roboto ">
@@ -56,41 +60,42 @@ const Banner = () => {
             >
               <SwiperSlide className="">
                 <img
-                  src="https://swiperjs.com/demos/images/nature-1.jpg"
+                  src={ban1}
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="https://swiperjs.com/demos/images/nature-2.jpg"
+                  src={ban2}
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              {/* <SwiperSlide>
+                <img
+                  src={ban3}
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide> */}
+              <SwiperSlide>
+                <img
+                  src={ban4}
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="https://swiperjs.com/demos/images/nature-3.jpg"
+                  src={ban5}
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
                 />
               </SwiperSlide>
               <SwiperSlide>
                 <img
-                  src="https://swiperjs.com/demos/images/nature-4.jpg"
+                  src={ban1}
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
                 />
               </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://swiperjs.com/demos/images/nature-5.jpg"
-                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
-                <img
-                  src="https://swiperjs.com/demos/images/nature-6.jpg"
-                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
-                />
-              </SwiperSlide>
-              <SwiperSlide>
+
+              {/* <SwiperSlide>
                 <img
                   src="https://swiperjs.com/demos/images/nature-7.jpg"
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
@@ -107,7 +112,7 @@ const Banner = () => {
                   src="https://swiperjs.com/demos/images/nature-5.jpg"
                   className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
                 />
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
           </div>
         </div>

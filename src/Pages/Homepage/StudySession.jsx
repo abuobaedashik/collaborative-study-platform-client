@@ -6,6 +6,7 @@ import moment from "moment/moment";
 import { NavLink } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import DynamicTitle from "../../Shared Components/DynamicTitle";
 
 const StudySession = () => {
   const [sessions, setsessions] = useState([]);
@@ -18,10 +19,6 @@ const StudySession = () => {
       setsessions(res.data.slice(0, 6));
     });
   }, [axiosPublic]);
-
-
-
-
 
   const currentDate = moment().format("YYYY-MM-DD");
 
@@ -37,11 +34,13 @@ const StudySession = () => {
   console.log(sessions);
   return (
     <div>
-      <div className="mt-6 text-4xl font-inter font-bold  text-center text-[#0A033C]">
-        {" "}
-        Upcoming Study Session
+      <div className="mt-8 mb-2 flex items-center gap-3 flex-col">
+        <DynamicTitle
+          heading="Don’t Miss Out"
+          title=" Upcoming Study Session"
+          subtitle="Don’t miss this golden opportunity to unlock your potential, gain new skills, and grow with every session."
+        />
       </div>
-      <div className="mt-2 text-center text-lg mb-3">Don’t miss this golden opportunity to unlock your potential, gain new skills, and grow with every session.</div>
       <div className="mt-5 grid grid-cols-1 xl:grid-cols-3  sm:grid-cols-2 gap-6 items-center justify-between mb-24 ">
         {sessions.map((session) => {
           const isClosed = moment(session.endDate).isBefore(moment(), "day");
@@ -49,21 +48,18 @@ const StudySession = () => {
           return (
             <div key={session._id} className="">
               <div className=" bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.030] duration-300">
-                  <div className="text-base">
+                <div className="text-base">
                   <img
-                  src={session?.banner}
-                  alt={session?.title}
-                  className="w-full h-[220px] hover:scale-[1.060] overflow-hidden duration-300  object-cover"
-                />
-                  </div>
-                  <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
-                  {
-                 session.fee == 0 ? "free" : <>{session.fee}$</>
-                  }
-                  </div>
-                  {/* content */}
+                    src={session?.banner}
+                    alt={session?.title}
+                    className="w-full h-[220px] hover:scale-[1.060] overflow-hidden duration-300  object-cover"
+                  />
+                </div>
+                <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
+                  {session.fee == 0 ? "free" : <>{session.fee}$</>}
+                </div>
+                {/* content */}
                 <div className="p-4 mx-2 items-left  flex flex-col justify-between min-h-[210px]">
-              
                   <h2 className="text-xl font-bold text-gray-800">
                     {session.title}
                   </h2>
@@ -93,7 +89,6 @@ const StudySession = () => {
             </div>
           );
         })}
-
         {/* update start 12 assignment 4/11/2025 */}
       </div>
     </div>
