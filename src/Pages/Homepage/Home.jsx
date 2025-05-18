@@ -20,7 +20,7 @@ const Home = () => {
         </div>
       </div>
       {/* why choice us  */}
-      <div className="mx-auto pb-[36px] w-11/12">
+      <div className="mx-auto pb-[36px] w-11/12 bg-[#ffffff]">
         <WhyChoiceUs></WhyChoiceUs>
       </div>
       {/* study session */}

@@ -51,8 +51,8 @@ const Navbar = () => {
       <div
         className={`navbar md:max-w-[1920px] fixed z-50   transition-all duration-300 ${
           isScrolled
-            ? "bg-[#ffffff] navbar max-w-[1920px]  fixed z-10 shadow-xl "
-            : "bg-[#f2f2f2] "
+            ? "bg-[#ffffff] navbar max-w-[1920px]  fixed z-10 shadow-md"
+            : "bg-[#fff] "
         }`}
       >
         <div className="md:flex-1 pl-2 md:pl-16 ">
@@ -135,7 +135,7 @@ const Navbar = () => {
                 <div className=" flex items-center justify-center gap-2">
                   {/* <span className="mr-6">{user?.displayName}</span> */}
 
-                  <button onClick={handleSignOut}>SignOut</button>
+                  <button onClick={handleSignOut} className="font-roboto text-[#131313]">SignOut</button>
                   <span className="mr-6">
                     {" "}
                     {user ? (
@@ -158,11 +158,11 @@ const Navbar = () => {
                 </div>
               ) : (
                 <div>
-                  <div className="flex items-center  gap-3 mr-5">
+                  <div className="flex items-center  gap-0 mr-5">
                     <NavLink
                       className={({ isActive }) =>
                         isActive
-                          ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                          ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#0A5EB0] font-bold"
                           : "md:flex gap-1 items-center text-sm font-medium px-3"
                       }
                       to={"/signup"}
@@ -170,12 +170,12 @@ const Navbar = () => {
                     <NavLink
                       className={({ isActive }) =>
                         isActive
-                          ? "rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold"
+                          ? "rounded-md px-3 py-1 text-[#2A3335] bg-[#FFA633] font-bold"
                           : "flex gap-1 items-center text-sm font-medium px-3"
                       }
                       to={"/login"}
                     >
-                      <button>Login</button>
+                      <button className="text-[#131313] font-roboto">Login</button>
                     </NavLink>
 
                     {/* className="rounded-md px-3 py-1 text-[#ffffff] bg-[#FFA633] font-bold" */}

@@ -4,13 +4,113 @@ import icon2 from "../../../src/assets/image/sparkles.png";
 import icon3 from "../../../src/assets/image/iconbg3.png";
 import svg from "../../../src/assets/image/Untitled.svg";
 import SwiperSlider from "./SwiperSlider";
+import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import { EffectCoverflow, Pagination } from "swiper/modules";
 
 const Banner = () => {
   return (
     <div className=" bg-[#ffffff] ">
-      <div className="p-[30px]"></div>
-      <div className=" md:h-[550px]  overflow-hidden ">
-         <SwiperSlider></SwiperSlider>
+      <div className="p-[33px]  border border-blue-600 "></div>
+      <div className=" min-h-[75vh] overflow-hidden  py-14">
+        {/* <SwiperSlider></SwiperSlider> */}
+        <div className="banner-full w-11/12 gap-[14px] sm:flex items-center justify-center   mx-auto ">
+          {/* left side text */}
+          <div className="left-side-text sm:w-[49%] w-full flex flex-col gap-4 items-start justify-center p-3">
+            <div className="title-small text-base text-[#fe753f] font-nunito">
+              Collaborative Learning, Smart Future
+            </div>
+            <div className="title-banner text-[#1a2330] font-extrabold text-[2.7rem] leading-[2.9rem] tracking-normal  font-roboto ">
+              Join our growin community where learners and tutors thrive
+              together.
+            </div>
+            <div className="title-subtitle text-[#486b9b] text-sm font-normal font-nunito">
+              Become a part of our ever-growing community, where passionate
+              learners and dedicated tutors collaborate closely to unlock
+              academic excellence and shape a brighter future together.
+            </div>
+            <button className="button text-base text-[#ffffff] font-inter bg-[#1a2330] font-semibold px-2 py-1 rounded-md">
+              Get Start
+            </button>
+          </div>
+          {/* right side slide */}
+          <div className="left-side-text overflow-hidden sm:w-[49%] w-full flex flex-col gap-4 items-start justify-center p-3">
+            <Swiper
+              effect={"coverflow"}
+              grabCursor={true}
+              centeredSlides={true}
+              slidesPerView={3}
+              coverflowEffect={{
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+              }}
+              pagination={true}
+              modules={[EffectCoverflow, Pagination]}
+              className="mySwiper w-full sm:w-full"
+            >
+              <SwiperSlide className="">
+                <img
+                  src="https://swiperjs.com/demos/images/nature-1.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-2.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-3.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-4.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-5.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-6.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-7.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-8.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+              <SwiperSlide>
+                <img
+                  src="https://swiperjs.com/demos/images/nature-5.jpg"
+                  className="w-full h-40 sm:h-[360px] object-cover rounded-lg"
+                />
+              </SwiperSlide>
+            </Swiper>
+          </div>
+        </div>
       </div>
       {/* #F5EDFE */}
       {/* <div className="flex items-center flex-col z-10 md:flex-row md:pt-[116px] pt-40 gap-3  justify-between    px-6 md:px-20">
@@ -39,7 +139,6 @@ const Banner = () => {
           </div>
         </div>
       </div> */}
-      
     </div>
   );
 };

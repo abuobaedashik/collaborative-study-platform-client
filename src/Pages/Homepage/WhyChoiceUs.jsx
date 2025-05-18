@@ -5,25 +5,26 @@ import {
   FaUserFriends,
   FaBookOpen,
 } from "react-icons/fa";
+import DynamicTitle from "../../Shared Components/DynamicTitle";
 
 const features = [
   {
-    icon: <FaLaptopCode className="text-4xl " />,
+    icon: <FaLaptopCode className="text-2xl " />,
     title: "Interactive Tools",
     desc: "Use modern tools to collaborate, write notes, and share ideas in real-time.",
   },
   {
-    icon: <FaClock className="text-4xl " />,
+    icon: <FaClock className="text-2xl " />,
     title: "Flexible Scheduling",
     desc: "Study anytime, anywhere with flexible and personalized session planning.",
   },
   {
-    icon: <FaUserFriends className="text-4xl " />,
+    icon: <FaUserFriends className="text-2xl " />,
     title: "Peer Collaboration",
     desc: "Learn and grow together with other students in group sessions.",
   },
   {
-    icon: <FaBookOpen className="text-4xl " />,
+    icon: <FaBookOpen className="text-2xl " />,
     title: "Organized Resources",
     desc: "Access shared study materials, notes, and assignments all in one place.",
   },
@@ -31,32 +32,26 @@ const features = [
 
 const WhyChoiceUs = () => {
   return (
-    <section className="py-20 bg-base-100">
+    <section className="pb-20">
      
       {/* st */}
       <div>
         <div className="mt-8 mb-2 flex items-center gap-3 flex-col">
-          <div className="mt-4 font-inter font-bold text-4xl  mb-2 ">
-          Why Choose Us
-          </div>
-          <p className="text-lg font-medium text-justify mb-4">
-          Empowering students with smart tools and seamless collaboration for a
-          brighter learning experience.
-          </p>
+           <DynamicTitle heading="Benefits of joining US" title="Smart Learning, Together" subtitle="Find better study materials to improve your skill" />
         </div>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 ">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 px-3">
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="card bg-base-200  hover:shadow-xl hover:bg-[#0A043C] hover:text-white transition duration-300 ease-in-out"
+              className=" duration-300 ease-in-out"
             >
-              <div className="card-body items-center text-center space-y-4">
-                {feature.icon}
-                <h3 className="card-title text-xl font-semibold">
+              <div className="flex items-start flex-col justify-start gap-5">
+                 <div className="rounded-full w-16 h-16 shadow-2xl  flex items-center justify-center text-[#ffffff] bg-[#fe753f] p-2"> {feature.icon}</div>
+                <h3 className="card-title text-2xl text-[#1a2330] font-roboto font-semibold">
                   {feature.title}
                 </h3>
-                <p className="">{feature.desc}</p>
+                <p className="text-[#486b9b] font-nunito text-base">{feature.desc}</p>
               </div>
             </div>
           ))}
