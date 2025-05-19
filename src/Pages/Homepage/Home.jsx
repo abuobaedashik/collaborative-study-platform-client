@@ -6,6 +6,7 @@ import Statistics from "./Statistics";
 import { Helmet } from "react-helmet-async";
 import WhyChoiceUs from "./WhyChoiceUs";
 import ReviewSection from "./ReviewSection";
+import FeatureSection from "./FeatureSection";
 
 const Home = () => {
   return (
@@ -22,6 +23,10 @@ const Home = () => {
       {/* why choice us  */}
       <div className="mx-auto pb-[36px] w-11/12 bg-[#ffffff]">
         <WhyChoiceUs></WhyChoiceUs>
+      </div>
+      {/* feature section */}
+      <div className="mx-auto pb-[36px] w-11/12 bg-[#ffffff]">
+        <FeatureSection></FeatureSection>
       </div>
       {/* study session */}
       <div className=" py-2 w-full">

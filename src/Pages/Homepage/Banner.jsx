@@ -28,7 +28,7 @@ const Banner = () => {
   return (
     <div className=" bg-[#ffffff] ">
       <div className="p-[33px]"></div>
-      <div className=" min-h-[75vh] overflow-hidden w-11/12 mx-auto py-14 border-black border">
+      <div className=" min-h-[75vh] overflow-hidden w-11/12 mx-auto py-14">
         {/* <SwiperSlider></SwiperSlider> */}
         <div className="banner-full  gap-[14px] sm:flex items-center justify-center ">
           {/* left side text */}
