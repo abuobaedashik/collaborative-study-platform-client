@@ -3,11 +3,20 @@ import icon1 from "../../../src/assets/image/iconbg1.png";
 import icon2 from "../../../src/assets/image/sparkles.png";
 import icon3 from "../../../src/assets/image/iconbg3.png";
 import svg from "../../../src/assets/image/Untitled.svg";
-import ban1 from "../../assets/banner-img1.jpg";
-import ban2 from "../../assets/banner-img2.jpg";
-// import ban3 from "../../assets/banner-img3.avif";  
+import ban2 from "../../assets/banner-img1.jpg";
+import ban1 from "../../assets/banner-img2.jpg";
+// import ban3 from "../../assets/banner-img3.avif";
 import ban4 from "../../assets/banner-img4.jpg";
 import ban5 from "../../assets/banner-img5.jpg";
+import logo1 from "../../../src/assets/collaboration/ten minute school.png";
+import logo2 from "../../../src/assets/collaboration/shikho.png";
+import logo3 from "../../../src/assets/collaboration/gai-logo-2.png";
+import logo4 from "../../../src/assets/collaboration/bteb.jpg";
+import logo5 from "../../../src/assets/collaboration/ict-logo.png";
+import logo6 from "../../../src/assets/collaboration/ulab.png";
+import logo7 from "../../../src/assets/collaboration/ph2.jpg";
+import logo8 from "../../../src/assets/collaboration/diu-logo.png";
+import Marquee from "react-fast-marquee";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -18,10 +27,10 @@ import { EffectCoverflow, Pagination } from "swiper/modules";
 const Banner = () => {
   return (
     <div className=" bg-[#ffffff] ">
-      <div className="p-[33px]  border border-blue-600 "></div>
-      <div className=" min-h-[75vh] overflow-hidden  py-14">
+      <div className="p-[33px]"></div>
+      <div className=" min-h-[75vh] overflow-hidden w-11/12 mx-auto py-14 border-black border">
         {/* <SwiperSlider></SwiperSlider> */}
-        <div className="banner-full w-11/12 gap-[14px] sm:flex items-center justify-center   mx-auto ">
+        <div className="banner-full  gap-[14px] sm:flex items-center justify-center ">
           {/* left side text */}
           <div className="left-side-text sm:w-[49%] w-full flex flex-col gap-4 items-start justify-center p-3">
             <div className="title-small text-lg text-[#fe753f] font-nunito">
@@ -47,6 +56,7 @@ const Banner = () => {
               grabCursor={true}
               centeredSlides={true}
               slidesPerView={3}
+              initialSlide={1}
               coverflowEffect={{
                 rotate: 50,
                 stretch: 0,
@@ -115,6 +125,57 @@ const Banner = () => {
               </SwiperSlide> */}
             </Swiper>
           </div>
+        </div>
+        {/* marque */}
+        <div className="p-3">
+          <Marquee pauseOnHover={true} speed={50} className="mt-10 ">
+            <div className="flex items-center justify-center gap-5">
+              <div>
+                <div className="logo-img1 ">
+                  <img
+                    src={logo1}
+                    alt="logo1"
+                    className="w-full h-[100px] overflow-hidden"
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img2">
+                  <img src={logo2} alt="logo2" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img3">
+                  <img src={logo3} alt="logo3" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img3">
+                  <img src={logo4} alt="logo4" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img3">
+                  <img src={logo5} alt="logo5" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img3">
+                  <img src={logo6} alt="logo6" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img7">
+                  <img src={logo7} alt="logo7" className="w-full h-[100px]" />
+                </div>
+              </div>
+              <div>
+                <div className="logo-img8 mr-5">
+                  <img src={logo8} alt="logo8" className="w-full h-[100px]" />
+                </div>
+              </div>
+            </div>
+          </Marquee>
         </div>
       </div>
       {/* #F5EDFE */}
