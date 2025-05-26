@@ -34,51 +34,54 @@ const StudySession = () => {
   console.log(sessions);
   return (
     <div>
-      <div className="mt-8 mb-2 flex items-center gap-3 flex-col">
+      <div className="mt-6 flex items-center gap-3 flex-col">
         <DynamicTitle
           heading="Don’t Miss Out"
           title=" Upcoming Study Session"
           subtitle="Don’t miss this golden opportunity to unlock your potential, gain new skills, and grow with every session."
         />
       </div>
-      <div className="mt-5 grid grid-cols-1 xl:grid-cols-3  sm:grid-cols-2 gap-6 items-center justify-between mb-24 ">
+      <div className="mt-5 grid grid-cols-1 xl:grid-cols-4  sm:grid-cols-2 gap-6 items-center justify-between mb-24 ">
         {sessions.map((session) => {
           const isClosed = moment(session.endDate).isBefore(moment(), "day");
 
           return (
             <div key={session._id} className="">
-              <div className=" bg-white shadow-lg rounded-2xl overflow-hidden transition-transform transform hover:scale-[1.030] duration-300">
+              <div className=" bg-white shadow-lg rounded-2xl min-h-[500px] overflow-hidden transition-transform transform hover:scale-[1.01] duration-300">
                 <div className="text-base">
                   <img
                     src={session?.banner}
                     alt={session?.title}
-                    className="w-full h-[220px] hover:scale-[1.060] overflow-hidden duration-300  object-cover"
+                    className="w-full h-[250px] hover:scale-[1.060] overflow-hidden duration-300  object-cover"
                   />
                 </div>
-                <div className=" bg-black text-[#ffff00]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
+                <div className=" bg-black text-[#fe753f]  font-extrabold w-[50px] text-base text center px-4 -mt-6 flex  z-30">
                   {session.fee == 0 ? "free" : <>{session.fee}$</>}
                 </div>
                 {/* content */}
                 <div className="p-4 mx-2 items-left  flex flex-col justify-between min-h-[210px]">
-                  <h2 className="text-xl font-bold text-gray-800">
-                    {session.title}
-                  </h2>
-                  <p className="text-gray-600 text-sm mt-2">
-                    {session.description.slice(0, 150)}....
-                  </p>
-                  <div className="flex justify-between items-center gap-8 mt-2">
+                  <div className="text  h-[190px] ">
+                    <h2 className="text-xl font-bold text-gray-800">
+                      {session.title}
+                    </h2>
+                    <p className="text-gray-600 text-sm mt-4">
+                      {session.description.slice(0, 150)}....
+                    </p>
+                  </div>
+                  {/* buttons */}
+                  <div className="flex justify-between items-center gap-8 mt-auto ">
                     <NavLink to={`sesssionDetails/${session._id}`}>
-                      <button className="py-2 font-extrabold rounded-lg bg-[#0a033cec] text-[#ffffff] px-5 ">
+                      <button className="button text-base text-[#ffffff] font-inter bg-[#1a2330] font-semibold px-2 py-1 rounded-md">
                         Read More
                       </button>
                     </NavLink>
 
                     {/* conditional button onging or closed */}
                     <button
-                      className={` px-4 py-2 rounded-lg font-bold   ${
+                      className={` px-4 py-1 font-semibold rounded-lg font-inter   ${
                         isClosed
-                          ? "bg-[#F3CFCF] text-red-600"
-                          : "bg-[#f3cfcfb1] text-green-500"
+                          ? "bg-[#fe753f] text-[#ffffff]"
+                          : "bg-[#fe753fd1] text-[#ffffff]"
                       }`}
                     >
                       {isClosed ? "Closed" : "Ongoing"}

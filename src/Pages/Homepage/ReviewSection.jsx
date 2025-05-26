@@ -40,8 +40,8 @@ const ReviewSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-6 md:px-20" id="reviews">
-      <div className="max-w-3xl mx-auto text-center">
+    <section className=" py-16 px-6 md:px-20" id="reviews">
+      <div className="w-full items-center justify-center mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
           What Students Say
         </h2>
@@ -55,11 +55,11 @@ const ReviewSection = () => {
               {" "}
               {/* Add horizontal padding here */}
               <div className="bg-white rounded-2xl shadow-md p-6 text-left h-full">
-                <div className="flex items-center mb-4">
-                  <div className="text-xl font-semibold text-gray-800">
+                <div className="flex items-center mb-4 justify-start font-bold">
+                  <div className="text-2xl font-semibold text-[#1a2330]">
                     {review.name}
                   </div>
-                  <span className="ml-2 text-sm text-gray-500">
+                  <span className="ml-2 text-sm text-[#486b9b] font-nunito">
                     ({review.role})
                   </span>
                 </div>

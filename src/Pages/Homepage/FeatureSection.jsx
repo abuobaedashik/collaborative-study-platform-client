@@ -37,6 +37,9 @@ const FeatureSection = () => {
               collaborating, sharing notes, solving problems, and staying
               productive—together!
             </p>
+            <button className="button text-base text-[#ffffff] font-inter bg-[#1a2330] font-semibold px-2 py-1 rounded-md">
+              Learn More
+            </button>
 
             {/* Features */}
             {/* <ul className="space-y-3">
@@ -59,7 +62,7 @@ const FeatureSection = () => {
         <div className="   flex-col-reverse md:flex-row justify-between mt-24 mx-auto flex  items-center gap-10 px-6">
           {/* Left: text */}
           <div className="w-full md:w-[46%] space-y-4">
-             <p className="text-[#fe753f] font-semibold uppercase tracking-wider">
+            <p className="text-[#fe753f] font-semibold uppercase tracking-wider">
               Why Join Us?
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#1a2330]">
@@ -70,6 +73,9 @@ const FeatureSection = () => {
               collaborating, sharing notes, solving problems, and staying
               productive—together!
             </p>
+            <button className="button text-base text-[#ffffff] font-inter bg-[#1a2330] font-semibold px-2 py-1 rounded-md">
+              Learn More
+            </button>
           </div>
 
           {/* Right:image*/}

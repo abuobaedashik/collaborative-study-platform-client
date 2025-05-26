@@ -11,7 +11,7 @@ const statsData = [
 
 const Statistics = () => {
   return (
-    <div className="bg-[#0a043c] text-white py-16 mb-24">
+    <div className="bg-[#fe753f] text-white py-16 mb-24">
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
       {statsData.map((item) => (
         <motion.div
@@ -24,14 +24,14 @@ const Statistics = () => {
         >
           {/* <div className="text-4xl mb-2">{item.icon}</div> */}
           <motion.h2
-            className="text-5xl font-bold"
+            className="text-5xl font-bold text-[#1a2330]"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: item.id * 0.2 }}
           >
-            <CountUp start={0} end={item.number} duration={2.5} />+
+            <CountUp  start={0} end={item.number} duration={2.5} />+
           </motion.h2>
-          <p className="text-gray-300 font-bold text-xl">{item.text}</p>
+          <p className="text-[#486b9b] font-bold text-xl">{item.text}</p>
         </motion.div>
       ))}
     </div>

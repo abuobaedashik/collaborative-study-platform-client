@@ -7,6 +7,8 @@ import { Helmet } from "react-helmet-async";
 import WhyChoiceUs from "./WhyChoiceUs";
 import ReviewSection from "./ReviewSection";
 import FeatureSection from "./FeatureSection";
+import HowItWorks from "./HowItWorks";
+import FaqSection from "./FaqSection";
 
 const Home = () => {
   return (
@@ -34,8 +36,16 @@ const Home = () => {
           <StudySession></StudySession>
         </div>
       </div>
+     {/* how it works section */}
+      <div className="mx-auto pb-[36px] w-11/12 bg-[#ffffff]">
+         <HowItWorks></HowItWorks>
+      </div>
       <div className="w-full my-8">
         <Statistics></Statistics>
+      </div>
+      {/* faq section */}
+       <div className="mx-auto pb-[36px] w-11/12">
+        <FaqSection></FaqSection>
       </div>
       <div className="mx-auto pb-[36px] w-11/12">
         <ReviewSection></ReviewSection>
